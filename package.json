@@ -10,7 +10,7 @@
     "serve:ssr:ng-future": "node dist/ng-future/server/server.mjs",
     "format": "prettier --write --ignore-path .gitignore .",
     "lint": "eslint .",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "private": true,
   "dependencies": {
