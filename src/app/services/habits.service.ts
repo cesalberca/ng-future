@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core'
 import { HabitsRepository } from '../repositories/habits.repository'
-import { CreateHabitForm } from '../models/create-habit-form'
+import { CreateHabitFormModel } from '../models/create-habit-form-model'
 import { CreateHabit } from '../models/create-habit'
 import { Habit } from '../models/habit'
 
@@ -19,7 +19,7 @@ export class HabitsService {
     this.habits.set(habits)
   }
 
-  async createHabit(createHabitForm: CreateHabitForm) {
+  async createHabit(createHabitForm: CreateHabitFormModel) {
     const createHabit: CreateHabit = {
       id: (Math.random() * 10000).toString(),
       name: createHabitForm.name,

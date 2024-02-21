@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
-import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 import { HabitsService } from '../../services/habits.service'
+import { FormModel } from '../../models/form-model'
+import { CreateHabitFormModel as CreateHabitForm } from '../../models/create-habit-form-model'
 
-interface CreateHabitForm {
-  name: FormControl<string>
-}
+type Model = FormModel<CreateHabitForm>
 
 @Component({
   selector: 'app-create-habit',
@@ -15,7 +15,7 @@ interface CreateHabitForm {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateHabitComponent {
-  form = this.formBuilder.group<CreateHabitForm>({
+  form = this.formBuilder.group<Model>({
     name: this.formBuilder.control('', [Validators.required, Validators.min(1)]),
   })
 
