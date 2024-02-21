@@ -1,0 +1,5 @@
+@for (habit of habits; track habit.id) {
+  <app-habit [habit]="habit"></app-habit>
+} @empty {
+  <li>There are no habits.</li>
+}
