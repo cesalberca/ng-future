@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 import { HabitsService } from '../../services/habits.service'
 
@@ -12,6 +12,7 @@ interface CreateHabitForm {
   imports: [ReactiveFormsModule],
   templateUrl: './create-habit.component.html',
   styleUrl: './create-habit.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateHabitComponent {
   form = this.formBuilder.group<CreateHabitForm>({
@@ -28,7 +29,6 @@ export class CreateHabitComponent {
   ) {}
 
   onSubmit() {
-    console.log(this.form.status)
     this.habitsService.createHabit({
       name: this.form.value.name!,
     })

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 import { Habit } from '../../models/habit'
 
 @Component({
@@ -7,6 +7,7 @@ import { Habit } from '../../models/habit'
   imports: [],
   templateUrl: './habit.component.html',
   styleUrl: './habit.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HabitComponent {
   @Input({ required: true })
