@@ -1,8 +1,8 @@
 import { Injectable, signal } from '@angular/core'
-import { HabitsRepository } from '../repositories/habits.repository'
 import { CreateHabitFormModel } from '../models/create-habit-form-model'
 import { CreateHabit } from '../models/create-habit'
 import { Habit } from '../models/habit'
+import { HabitsRepository } from '../repositories/habits.repository'
 
 @Injectable({
   providedIn: 'root',

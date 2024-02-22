@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing'
 
-import { HabitsRepository } from './habits.repository'
+import { HabitsInMemoryRepository } from './habits-in-memory.repository'
 
 describe('HabitsRepository', () => {
-  let service: HabitsRepository
+  let service: HabitsInMemoryRepository
 
   beforeEach(() => {
     TestBed.configureTestingModule({})
-    service = TestBed.inject(HabitsRepository)
+    service = TestBed.inject(HabitsInMemoryRepository)
   })
 
   it('should be created', () => {
