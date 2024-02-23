@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, input } from '@angular/core'
 import { Habit } from '../../models/habit'
 
 @Component({
@@ -10,6 +10,5 @@ import { Habit } from '../../models/habit'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HabitComponent {
-  @Input({ required: true })
-  habit!: Habit
+  habit = input.required<Habit>()
 }
