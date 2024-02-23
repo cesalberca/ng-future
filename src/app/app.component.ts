@@ -11,6 +11,4 @@ import { CreateHabitComponent } from './components/create-habit/create-habit.com
   styleUrl: './app.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  title = 'ng-future'
-}
+export class AppComponent {}
