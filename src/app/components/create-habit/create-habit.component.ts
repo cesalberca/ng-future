@@ -3,6 +3,7 @@ import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angula
 import { HabitsService } from '../../services/habits.service'
 import { FormModel } from '../../models/form-model'
 import { CreateHabitFormModel as CreateHabitForm } from '../../models/create-habit-form-model'
+import { Router } from '@angular/router'
 
 type Model = FormModel<CreateHabitForm>
 
@@ -26,11 +27,13 @@ export class CreateHabitComponent {
   constructor(
     private readonly formBuilder: NonNullableFormBuilder,
     private readonly habitsService: HabitsService,
+    private readonly router: Router,
   ) {}
 
-  onSubmit() {
-    this.habitsService.createHabit({
+  async onSubmit() {
+    await this.habitsService.createHabit({
       name: this.form.value.name!,
     })
+    this.router.navigate(['..'])
   }
 }
