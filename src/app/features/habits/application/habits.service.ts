@@ -11,9 +11,7 @@ import { Id } from '../../../core/models/id'
 export class HabitsService {
   habits = signal<Habit[]>([])
 
-  constructor(private readonly habitsRepository: HabitsRepository) {
-    this.loadHabits()
-  }
+  constructor(private readonly habitsRepository: HabitsRepository) {}
 
   async loadHabits(): Promise<void> {
     const habits = await this.habitsRepository.findAll()

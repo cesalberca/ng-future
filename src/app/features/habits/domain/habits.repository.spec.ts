@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing'
 
-import { HabitsInMemoryRepository } from '../infrastructure/habits-in-memory.repository'
+import { HabitsLocalStorageRepository } from '../infrastructure/habits-local-storage.repository'
 
 describe('HabitsRepository', () => {
-  let service: HabitsInMemoryRepository
+  let service: HabitsLocalStorageRepository
 
   beforeEach(() => {
     TestBed.configureTestingModule({})
-    service = TestBed.inject(HabitsInMemoryRepository)
+    service = TestBed.inject(HabitsLocalStorageRepository)
   })
 
   it('should be created', () => {

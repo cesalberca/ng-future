@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core'
-import { provideRouter, TitleStrategy, withComponentInputBinding, withDebugTracing } from '@angular/router'
+import { provideRouter, TitleStrategy, withComponentInputBinding } from '@angular/router'
 import { routes } from './app.routes'
 import { provideClientHydration } from '@angular/platform-browser'
 import { InjectionTokens } from './core/tokens/injection-tokens'
@@ -11,7 +11,7 @@ import { HabitsInMemoryRepository } from './features/habits/infrastructure/habit
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes, withComponentInputBinding(), withDebugTracing()),
+    provideRouter(routes, withComponentInputBinding()),
     { provide: TitleStrategy, useClass: CustomTitleStrategy },
     provideClientHydration(),
     provideHttpClient(withFetch(), withInterceptors([baseUrlInterceptor])),
