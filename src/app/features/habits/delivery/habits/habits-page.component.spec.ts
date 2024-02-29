@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { HabitsComponent } from './habits.component'
+import { HabitsPage } from './habits-page.component'
 
 describe('HabitsComponent', () => {
-  let component: HabitsComponent
-  let fixture: ComponentFixture<HabitsComponent>
+  let component: HabitsPage
+  let fixture: ComponentFixture<HabitsPage>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HabitsComponent],
+      imports: [HabitsPage],
     }).compileComponents()
 
-    fixture = TestBed.createComponent(HabitsComponent)
+    fixture = TestBed.createComponent(HabitsPage)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

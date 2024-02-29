@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@angular/core'
-import { InjectionTokens } from '../tokens/injection-tokens'
-import { CreateHabit } from '../models/create-habit'
-import { Habit } from '../models/habit'
-import { HabitsRepository } from './habits.repository'
+import { InjectionTokens } from '../../../core/tokens/injection-tokens'
+import { CreateHabit } from '../../../core/models/create-habit'
+import { Habit } from '../../../core/models/habit'
+import { HabitsRepository } from '../domain/habits.repository'
 
 @Injectable({
   providedIn: 'root',

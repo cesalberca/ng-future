@@ -1,17 +1,17 @@
 import { ApplicationConfig } from '@angular/core'
-import { provideRouter, TitleStrategy } from '@angular/router'
+import { provideRouter, TitleStrategy, withComponentInputBinding, withDebugTracing } from '@angular/router'
 import { routes } from './app.routes'
 import { provideClientHydration } from '@angular/platform-browser'
-import { InjectionTokens } from './tokens/injection-tokens'
+import { InjectionTokens } from './core/tokens/injection-tokens'
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http'
-import { HabitsRepository } from './repositories/habits.repository'
-import { HabitsHttpRepository } from './repositories/habits-http.repository'
-import { baseUrlInterceptor } from './interceptors/base-url.interceptor'
-import { CustomTitleStrategy } from './router/custom-title-strategy'
+import { HabitsRepository } from './features/habits/domain/habits.repository'
+import { baseUrlInterceptor } from './core/http/interceptors/base-url.interceptor'
+import { CustomTitleStrategy } from './core/router/custom-title-strategy'
+import { HabitsInMemoryRepository } from './features/habits/infrastructure/habits-in-memory.repository'
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding(), withDebugTracing()),
     { provide: TitleStrategy, useClass: CustomTitleStrategy },
     provideClientHydration(),
     provideHttpClient(withFetch(), withInterceptors([baseUrlInterceptor])),
@@ -21,7 +21,7 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide: HabitsRepository,
-      useClass: HabitsHttpRepository,
+      useClass: HabitsInMemoryRepository,
     },
   ],
 }

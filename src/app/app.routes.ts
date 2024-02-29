@@ -1,16 +1,24 @@
 import { Routes } from '@angular/router'
-import { CreateHabitComponent } from './components/create-habit/create-habit.component'
-import { HabitsComponent } from './components/habits/habits.component'
-import { NotFoundComponent } from './components/not-found/not-found.component'
+import { HabitPage } from './features/habits/features/habit/delivery/habit/habit-page.component'
+import { HabitsPage } from './features/habits/delivery/habits/habits-page.component'
+import { CreateHabitPage } from './features/habits/features/create-habit/delivery/create-habit/create-habit-page.component'
+import { NotFoundPage } from './core/components/not-found/not-found-page.component'
 
 export const routes: Routes = [
   {
-    path: 'create',
-    component: CreateHabitComponent,
+    path: 'habits',
     children: [
       {
-        path: 'habits',
-        component: HabitsComponent,
+        path: '',
+        component: HabitsPage,
+      },
+      {
+        path: ':id',
+        component: HabitPage,
+      },
+      {
+        path: 'create',
+        component: CreateHabitPage,
       },
     ],
   },
@@ -21,6 +29,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    component: NotFoundComponent,
+    component: NotFoundPage,
   },
 ]

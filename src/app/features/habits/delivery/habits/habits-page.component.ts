@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
-import { HabitComponent } from '../habit/habit.component'
-import { HabitsService } from '../../services/habits.service'
+import { HabitComponent } from '../../../../core/components/habit/habit.component'
+import { HabitsService } from '../../application/habits.service'
 import { RouterLink } from '@angular/router'
 
 @Component({
   selector: 'app-habits',
   standalone: true,
   imports: [HabitComponent, RouterLink],
-  templateUrl: './habits.component.html',
-  styleUrl: './habits.component.css',
+  templateUrl: './habits-page.component.html',
+  styleUrl: './habits-page.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HabitsComponent {
+export class HabitsPage {
   constructor(readonly habitService: HabitsService) {}
 }

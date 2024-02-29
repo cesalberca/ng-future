@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
-import { HabitsRepository } from './habits.repository'
-import { CreateHabit } from '../models/create-habit'
-import { Habit } from '../models/habit'
+import { HabitsRepository } from '../domain/habits.repository'
+import { CreateHabit } from '../../../core/models/create-habit'
+import { Habit } from '../../../core/models/habit'
 import { HttpClient } from '@angular/common/http'
 import { firstValueFrom } from 'rxjs'
 

@@ -1,16 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { CreateHabitComponent } from './create-habit.component'
 
-describe('CreateHabitComponent', () => {
-  let component: CreateHabitComponent
-  let fixture: ComponentFixture<CreateHabitComponent>
+import { NotFoundPage } from './not-found-page.component'
+
+describe('NotFoundComponent', () => {
+  let component: NotFoundPage
+  let fixture: ComponentFixture<NotFoundPage>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateHabitComponent],
+      imports: [NotFoundPage],
     }).compileComponents()
 
-    fixture = TestBed.createComponent(CreateHabitComponent)
+    fixture = TestBed.createComponent(NotFoundPage)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

@@ -4,7 +4,7 @@ import express from 'express'
 import { fileURLToPath } from 'node:url'
 import { dirname, join, resolve } from 'node:path'
 import bootstrap from './src/main.server'
-import { Habit } from './src/app/models/habit'
+import { Habit } from './src/app/core/models/habit'
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -26,6 +26,13 @@ export function app(): express.Express {
       },
     ]
     return res.json(habits)
+  })
+
+  server.get('/api/habits/$id', (req, res) => {
+    return res.json({
+      id: 'foo',
+      name: 'bar',
+    })
   })
   // Serve static files from /browser
   server.get(

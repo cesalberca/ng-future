@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing'
 
-import { HabitsInMemoryRepository } from './habits-in-memory.repository'
+import { HabitsInMemoryRepository } from '../infrastructure/habits-in-memory.repository'
 
 describe('HabitsRepository', () => {
   let service: HabitsInMemoryRepository
