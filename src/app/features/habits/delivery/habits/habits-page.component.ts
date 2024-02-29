@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { afterNextRender, ChangeDetectionStrategy, Component } from '@angular/core'
 import { HabitComponent } from '../../../../core/components/habit/habit.component'
 import { HabitsService } from '../../application/habits.service'
 import { RouterLink } from '@angular/router'
@@ -12,5 +12,9 @@ import { RouterLink } from '@angular/router'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HabitsPage {
-  constructor(readonly habitService: HabitsService) {}
+  constructor(readonly habitService: HabitsService) {
+    afterNextRender(() => {
+      this.habitService.loadHabits()
+    })
+  }
 }

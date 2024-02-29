@@ -7,7 +7,7 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { HabitsRepository } from './features/habits/domain/habits.repository'
 import { baseUrlInterceptor } from './core/http/interceptors/base-url.interceptor'
 import { CustomTitleStrategy } from './core/router/custom-title-strategy'
-import { HabitsInMemoryRepository } from './features/habits/infrastructure/habits-in-memory.repository'
+import { HabitsLocalStorageRepository } from './features/habits/infrastructure/habits-local-storage.repository'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,7 +21,7 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide: HabitsRepository,
-      useClass: HabitsInMemoryRepository,
+      useClass: HabitsLocalStorageRepository,
     },
   ],
 }

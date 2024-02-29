@@ -20,7 +20,6 @@ export class HabitsLocalStorageRepository extends HabitsRepository {
   }
 
   async findAll(): Promise<Habit[]> {
-    console.log('storage' + this.storage)
     return JSON.parse(this.storage.getItem(this.STORAGE_KEY) ?? '[]')
   }
 }
