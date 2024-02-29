@@ -11,8 +11,8 @@ type Model = FormModel<CreateHabitForm>
   selector: 'app-create-habit-page',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './create-habit-page.component.html',
-  styleUrl: './create-habit-page.component.css',
+  templateUrl: './create-habit.page.html',
+  styleUrl: './create-habit.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateHabitPage {

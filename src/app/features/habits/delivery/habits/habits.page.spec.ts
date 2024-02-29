@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { CreateHabitPage } from './create-habit-page.component'
+import { HabitsPage } from './habits.page'
 
-describe('CreateHabitComponent', () => {
-  let component: CreateHabitPage
-  let fixture: ComponentFixture<CreateHabitPage>
+describe('HabitsPage', () => {
+  let component: HabitsPage
+  let fixture: ComponentFixture<HabitsPage>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateHabitPage],
+      imports: [HabitsPage],
     }).compileComponents()
 
-    fixture = TestBed.createComponent(CreateHabitPage)
+    fixture = TestBed.createComponent(HabitsPage)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

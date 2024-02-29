@@ -1,7 +1,7 @@
 @for (habit of habitService.habits(); track habit.id) {
-  <app-habit [habit]="habit" [routerLink]="habit.id"></app-habit>
+<app-habit [habit]="habit" [routerLink]="habit.id"></app-habit>
 } @empty {
-  <li>There are no habits.</li>
+<li>There are no habits.</li>
 }
 
 <a [routerLink]="'create'">Create Habit</a>

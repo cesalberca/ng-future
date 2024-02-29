@@ -7,8 +7,8 @@ import { RouterLink } from '@angular/router'
   selector: 'app-habits',
   standalone: true,
   imports: [HabitComponent, RouterLink],
-  templateUrl: './habits-page.component.html',
-  styleUrl: './habits-page.component.css',
+  templateUrl: './habits.page.html',
+  styleUrl: './habits.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HabitsPage {

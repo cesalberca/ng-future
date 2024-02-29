@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { HabitPage } from './habit.page'
 
-import { HabitPage } from './habit-page.component'
-
-describe('HabitComponent', () => {
+describe('HabitPage', () => {
   let component: HabitPage
   let fixture: ComponentFixture<HabitPage>
 

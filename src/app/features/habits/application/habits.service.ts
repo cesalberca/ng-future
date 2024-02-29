@@ -33,6 +33,5 @@ export class HabitsService {
       name: createHabitForm.name,
     }
     await this.habitsRepository.save(createHabit)
-    this.loadHabits()
   }
 }

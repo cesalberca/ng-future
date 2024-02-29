@@ -8,8 +8,8 @@ import { HabitComponent } from '../../../../../../core/components/habit/habit.co
   selector: 'app-habit-page',
   standalone: true,
   imports: [HabitComponent],
-  templateUrl: './habit-page.component.html',
-  styleUrl: './habit-page.component.css',
+  templateUrl: './habit.page.html',
+  styleUrl: './habit.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HabitPage {
