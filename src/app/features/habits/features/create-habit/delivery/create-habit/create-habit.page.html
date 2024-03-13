@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <label>
     Name
-    <input formControlName="name"
+    <input autofocus formControlName="name"
   /></label>
   @if (name.invalid && (name.dirty || name.touched)) {
   <!-- prettier-ignore -->

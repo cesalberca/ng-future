@@ -36,7 +36,7 @@ export class HabitsService {
     // Option 1
     // this.habits.update(currentHabits => [...currentHabits, createHabit])
     // Option 2
-    this.loadHabits()
+    //this.loadHabits()
     // Option 3
     // dejar que al volver se cargue la página de nuevo
   }
