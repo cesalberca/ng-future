@@ -4,7 +4,7 @@ import express from 'express'
 import { fileURLToPath } from 'node:url'
 import { dirname, join, resolve } from 'node:path'
 import bootstrap from './src/main.server'
-import { Habit } from './src/app/core/models/habit'
+import { server as mockServer } from './src/mocks/server.mocks'
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -18,22 +18,8 @@ export function app(): express.Express {
   server.set('view engine', 'html')
   server.set('views', browserDistFolder)
 
-  server.get('/api/habits', (_req, res) => {
-    const habits: Habit[] = [
-      {
-        id: 'foo',
-        name: 'bar',
-      },
-    ]
-    return res.json(habits)
-  })
+  mockServer.listen()
 
-  server.get('/api/habits/$id', (_req, res) => {
-    return res.json({
-      id: 'foo',
-      name: 'bar',
-    })
-  })
   // Serve static files from /browser
   server.get(
     '*.*',
