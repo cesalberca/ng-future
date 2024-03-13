@@ -32,7 +32,7 @@ export class CreateHabitPage {
 
   async onSubmit() {
     await this.habitsService.createHabit({
-      name: this.form.value.name!,
+      name: this.name.value,
     })
     this.router.navigate(['..'])
   }

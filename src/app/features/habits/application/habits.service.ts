@@ -33,5 +33,11 @@ export class HabitsService {
       name: createHabitForm.name,
     }
     await this.habitsRepository.save(createHabit)
+    // Option 1
+    // this.habits.update(currentHabits => [...currentHabits, createHabit])
+    // Option 2
+    this.loadHabits()
+    // Option 3
+    // dejar que al volver se cargue la página de nuevo
   }
 }

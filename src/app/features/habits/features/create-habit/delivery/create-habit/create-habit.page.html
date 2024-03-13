@@ -3,7 +3,9 @@
     Name
     <input formControlName="name"
   /></label>
-  @if (name.invalid && (name.dirty || name.touched)) { @if (name.errors?.['required']) {
+  @if (name.invalid && (name.dirty || name.touched)) {
+  <!-- prettier-ignore -->
+  @if (name.errors?.['required']) {
   <div>Name is required.</div>
   } @if (name.errors?.['minlength']) {
   <div>Name must be at least 3 characters long.</div>
