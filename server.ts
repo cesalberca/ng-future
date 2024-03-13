@@ -18,7 +18,7 @@ export function app(): express.Express {
   server.set('view engine', 'html')
   server.set('views', browserDistFolder)
 
-  server.get('/api/habits', (req, res) => {
+  server.get('/api/habits', (_req, res) => {
     const habits: Habit[] = [
       {
         id: 'foo',
@@ -28,7 +28,7 @@ export function app(): express.Express {
     return res.json(habits)
   })
 
-  server.get('/api/habits/$id', (req, res) => {
+  server.get('/api/habits/$id', (_req, res) => {
     return res.json({
       id: 'foo',
       name: 'bar',
