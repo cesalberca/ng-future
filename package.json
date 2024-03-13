@@ -52,6 +52,9 @@
     "prettier": "3.2.5",
     "typescript": "5.3.3"
   },
+  "msw": {
+    "workerDirectory": "./src/assets"
+  },
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --fix",
     "*.{js,ts,html,css,md}": "prettier --write"
