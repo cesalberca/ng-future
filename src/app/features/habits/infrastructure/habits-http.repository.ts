@@ -4,13 +4,16 @@ import { CreateHabit } from '../../../core/models/create-habit'
 import { Habit } from '../../../core/models/habit'
 import { HttpClient } from '@angular/common/http'
 import { firstValueFrom } from 'rxjs'
+import { Id } from '../../../core/models/id'
 
 @Injectable({
   providedIn: 'root',
 })
-export class HabitsHttpRepository extends HabitsRepository {
-  constructor(private readonly httpClient: HttpClient) {
-    super()
+export class HabitsHttpRepository implements HabitsRepository {
+  constructor(private readonly httpClient: HttpClient) {}
+
+  delete(id: Id): Promise<void> {
+    return firstValueFrom(this.httpClient.delete<void>(`habits/${id}`))
   }
 
   save(createHabit: CreateHabit): Promise<void> {
