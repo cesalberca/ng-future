@@ -1,7 +1,5 @@
 import { CreateHabit } from '../../../core/models/create-habit'
 import { Habit } from '../../../core/models/habit'
+import { CrudRepository } from '../../../core/repositories/crud-repository'
 
-export abstract class HabitsRepository {
-  abstract save(createHabit: CreateHabit): Promise<void>
-  abstract findAll(): Promise<Habit[]>
-}
+export interface HabitsRepository extends CrudRepository<CreateHabit, Habit> {}

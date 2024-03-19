@@ -1,10 +1,11 @@
-import { Injectable, signal } from '@angular/core'
+import { Inject, Injectable, signal } from '@angular/core'
 import { CreateHabitFormModel } from '../../../core/models/create-habit-form-model'
 import { CreateHabit } from '../../../core/models/create-habit'
 import { Habit } from '../../../core/models/habit'
 import { HabitsRepository } from '../domain/habits.repository'
 import { Id } from '../../../core/models/id'
 import { UuidService } from '../../../core/crypto/uuid.service'
+import { InjectionTokens } from '../../../core/tokens/injection-tokens'
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class HabitsService {
   habits = signal<Habit[]>([])
 
   constructor(
-    private readonly habitsRepository: HabitsRepository,
+    @Inject(InjectionTokens.HABITS_REPOSITORY) private readonly habitsRepository: HabitsRepository,
     private readonly uuidService: UuidService,
   ) {}
 
