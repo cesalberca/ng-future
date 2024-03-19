@@ -1,2 +1,2 @@
 <p>{{ habit().name }}</p>
-<button (click)="deleted.emit(habit().id)">🗑️</button>
+<ng-content select="[habit-actions]"></ng-content>

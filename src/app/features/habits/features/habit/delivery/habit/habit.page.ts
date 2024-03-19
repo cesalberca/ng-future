@@ -4,11 +4,12 @@ import { HabitsService } from '../../../../application/habits.service'
 import { Habit } from '../../../../../../core/models/habit'
 import { HabitComponent } from '../../../../../../core/components/habit/habit.component'
 import { Router } from '@angular/router'
+import { HabitRemoverComponent } from '../../../../delivery/habits/habit-remover/habit-remover.component'
 
 @Component({
   selector: 'app-habit-page',
   standalone: true,
-  imports: [HabitComponent],
+  imports: [HabitComponent, HabitRemoverComponent],
   templateUrl: './habit.page.html',
   styleUrl: './habit.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
