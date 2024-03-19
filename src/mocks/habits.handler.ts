@@ -12,11 +12,11 @@ const habits = new LiveStorage<Habit[]>('habits', [
 ])
 
 export const habitsHandler = [
-  http.get<never, never, Habit[]>(api('habits'), () => {
-    return HttpResponse.json(habits.getValue(), {
+  http.get<never, never, Habit[]>(api('habits'), () =>
+    HttpResponse.json(habits.getValue(), {
       status: 200,
-    })
-  }),
+    }),
+  ),
   http.post<CreateHabit, never, Habit>(api('habits'), async ({ request }) => {
     const data = await request.json()
     habits.update(x => [...x, data])

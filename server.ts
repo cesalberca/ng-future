@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join, resolve } from 'node:path'
 import bootstrap from './src/main.server'
 import { server as mockServer } from './src/mocks/server.mocks'
+import { isDevMode } from '@angular/core'
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -18,7 +19,9 @@ export function app(): express.Express {
   server.set('view engine', 'html')
   server.set('views', browserDistFolder)
 
-  mockServer.listen()
+  if (isDevMode()) {
+    mockServer.listen()
+  }
 
   // Serve static files from /browser
   server.get(
