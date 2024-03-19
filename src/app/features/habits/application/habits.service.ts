@@ -35,4 +35,8 @@ export class HabitsService {
     }
     await this.habitsRepository.save(createHabit)
   }
+
+  async deleteHabit(id: Id) {
+    return this.habitsRepository.delete(id)
+  }
 }

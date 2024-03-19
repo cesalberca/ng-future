@@ -3,6 +3,7 @@ import { Habit } from '../app/core/models/habit'
 import { api } from './api'
 import { CreateHabit } from '../app/core/models/create-habit'
 import { LiveStorage } from '@mswjs/storage'
+import { Id } from '../app/core/models/id'
 
 const habits = new LiveStorage<Habit[]>('habits', [
   {
@@ -22,6 +23,15 @@ export const habitsHandler = [
     habits.update(x => [...x, data])
     return HttpResponse.json(data, {
       status: 200,
+    })
+  }),
+  http.delete<{ id: Id }, never, never>(api('habits/:id'), async ({ params }) => {
+    const data = params.id
+
+    habits.update(x => x.filter(y => y.id !== data))
+
+    return HttpResponse.json(undefined, {
+      status: 204,
     })
   }),
 ]
