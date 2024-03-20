@@ -6,6 +6,7 @@ import { InjectionTokens } from '../tokens/injection-tokens'
 import { Type } from '../type/type'
 import { inject, Inject, Injectable, Injector, runInInjectionContext } from '@angular/core'
 import { EmptyMiddleware } from './middlewares/empty.middleware'
+import { InjectionContextError } from './injection-context.error'
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +33,7 @@ export class UseCaseService {
     })
 
     if (next === undefined) {
-      throw new Error('Could not get UseCaseHandler')
+      throw new InjectionContextError()
     }
 
     for (let i = this.middlewares.length - 1; i >= 0; i--) {
