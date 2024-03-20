@@ -11,6 +11,7 @@ import { EmptyMiddleware } from './core/use-case/middlewares/empty.middleware'
 import { LogMiddleware } from './core/use-case/middlewares/log.middleware'
 import { ErrorMiddleware } from './core/use-case/middlewares/error.middleware'
 import { ToastMiddleware } from './core/use-case/middlewares/toast.middleware'
+import { GlobalErrorHandler } from './core/errors/global-error-handler'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     { provide: TitleStrategy, useClass: CustomTitleStrategy },
     provideClientHydration(),
     provideHttpClient(withFetch(), withInterceptors([baseUrlInterceptor])),
+    GlobalErrorHandler,
     {
       provide: InjectionTokens.STORAGE,
       useValue: globalThis.localStorage,
