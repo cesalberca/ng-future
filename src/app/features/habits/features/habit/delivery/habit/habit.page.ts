@@ -32,12 +32,13 @@ export class HabitPage {
   }
 
   async delete() {
+    const name = this.habit()?.name
     await this.useCaseService.execute(
       DeleteHabitCmd,
       { id: this.id() },
       {
         message: {
-          title: `Habit ${this.habit()?.name} deleted`,
+          title: `Habit ${name} deleted`,
         },
       },
     )

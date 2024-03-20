@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing'
-
 import { DeleteHabitCmd } from './delete-habit.cmd'
 
 describe('DeleteHabitService', () => {

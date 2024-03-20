@@ -9,7 +9,13 @@ import { UseCaseOptions } from '../use-case-options'
 export class ToastMiddleware implements Middleware {
   async intercept(params: unknown, next: UseCase, options: UseCaseOptions): Promise<unknown> {
     const result = await next.handle(params)
-    alert(options.message?.title + '\n' + options.message?.description)
+    let message = options.message?.title ?? ''
+
+    if (options.message?.description) {
+      message += '\n' + options.message.description
+    }
+
+    alert(message)
     return result
   }
 }
