@@ -1,7 +1,9 @@
 <div class="container">
   @if (errors().length) {
     @for (error of errors(); track $index) {
-      <p>{{ error.message }}</p>
+      <div class="error">
+        <p>{{ error.message }}</p>
+      </div>
     }
   }
 </div>

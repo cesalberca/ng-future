@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, effect, inject, Inject, NgZone, PLATFORM_ID, signal } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  effect,
+  inject,
+  Inject,
+  NgZone,
+  PLATFORM_ID,
+  signal,
+} from '@angular/core'
 import { EventEmitter } from '../../../event-emitter/event-emitter'
 import { Events } from '../../../event-emitter/events'
 import { isPlatformBrowser } from '@angular/common'
@@ -17,6 +27,7 @@ export class ErrorToasterComponent {
   constructor(
     private readonly eventEmitter: EventEmitter,
     @Inject(PLATFORM_ID) private readonly platformId: object,
+    private readonly changeDetectorRef: ChangeDetectorRef,
   ) {
     const handleError = (error: Error) => {
       this.errors.update(x => [...x, error])
@@ -24,6 +35,7 @@ export class ErrorToasterComponent {
 
     const removeError = () => {
       this.errors.update(prevArray => prevArray.slice(1))
+      this.changeDetectorRef.detectChanges()
     }
 
     effect(onCleanup => {
