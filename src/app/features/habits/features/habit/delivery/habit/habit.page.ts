@@ -5,6 +5,8 @@ import { Habit } from '../../../../../../core/models/habit'
 import { HabitComponent } from '../../../../../../core/components/habit/habit.component'
 import { Router } from '@angular/router'
 import { HabitRemoverComponent } from '../../../../delivery/habits/habit-remover/habit-remover.component'
+import { DeleteHabitCmd } from '../../../../application/delete-habit.cmd'
+import { UseCaseService } from '../../../../../../core/use-case/use-case.service'
 
 @Component({
   selector: 'app-habit-page',
@@ -19,6 +21,7 @@ export class HabitPage {
   habit = signal<Habit | undefined>(undefined)
 
   constructor(
+    private readonly useCaseService: UseCaseService,
     private readonly habitsService: HabitsService,
     private readonly router: Router,
   ) {
@@ -29,7 +32,15 @@ export class HabitPage {
   }
 
   async delete() {
-    await this.habitsService.deleteHabit(this.id())
+    await this.useCaseService.execute(
+      DeleteHabitCmd,
+      { id: this.id() },
+      {
+        message: {
+          title: `Habit ${this.habit()?.name} deleted`,
+        },
+      },
+    )
     this.router.navigate(['..'])
   }
 }
