@@ -1,0 +1,23 @@
+:root {
+  /* Palette */
+  --background-color: oklch(1 0 89.876);
+  --on-background-color: oklch(0.169 0.004 285.951);
+  --primary-color: oklch(69.02% 0.277 332.77);
+  --on-primary-color: oklch(1 0 89.876);
+  --secondary-color: oklch(51.64% 0.229 281.65);
+  --on-secondary-color: oklch(1 0 89.876);
+  --accent-color: oklch(63.32% 0.24 31.68);
+  --on-accent-color: oklch(1 0 89.876);
+
+  --error-color: oklch(63.32% 0.24 31.68);
+  --on-error-color: oklch(1 0 89.876);
+  --success-color: oklch(79.12% 0.257 155.13);
+  --on-success-color: oklch(1 0 89.876);
+
+  /* Misc */
+  --border-radius: var(--xs);
+
+  /* Typography */
+  --body-font-family: 'Arial', sans-serif;
+  --title-font-family: 'Arial', sans-serif;
+}

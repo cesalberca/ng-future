@@ -1,1 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('./app/core/styles/reset.css');
+@import url('./app/core/styles/spacing.css');
+@import url('./app/core/styles/theme.css');
+@import url('./app/core/styles/globals.css');
