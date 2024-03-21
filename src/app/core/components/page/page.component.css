@@ -1,0 +1,10 @@
+:host {
+  display: block;
+}
+
+.page {
+}
+
+.content {
+  padding: var(--md);
+}
