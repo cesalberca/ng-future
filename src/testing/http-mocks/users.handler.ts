@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { User } from '../app/core/models/user'
+import { User } from '../../app/core/models/user'
 import { api } from './api'
 
 const user: User | null = null

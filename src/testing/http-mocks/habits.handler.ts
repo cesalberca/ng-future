@@ -1,16 +1,12 @@
 import { http, HttpResponse } from 'msw'
-import { Habit } from '../app/core/models/habit'
+import { Habit } from '../../app/core/models/habit'
 import { api } from './api'
-import { CreateHabit } from '../app/core/models/create-habit'
+import { CreateHabit } from '../../app/core/models/create-habit'
 import { LiveStorage } from '@mswjs/storage'
-import { Id } from '../app/core/models/id'
+import { Id } from '../../app/core/models/id'
+import { HabitMother } from '../mothers/habit.mother'
 
-const habits = new LiveStorage<Habit[]>('habits', [
-  {
-    id: '33c6daf1-491f-4ab1-a6dd-e0198e1bef91',
-    name: 'Read',
-  },
-])
+const habits = new LiveStorage<Habit[]>('habits', [HabitMother.reading()])
 
 export const habitsHandler = [
   http.get<never, never, Habit[]>(api('habits'), () =>

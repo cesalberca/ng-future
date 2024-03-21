@@ -1,15 +1,23 @@
-import { TestBed } from '@angular/core/testing'
 import { DeleteHabitCmd } from './delete-habit.cmd'
+import { IdMother } from '../../../../testing/mothers/id.mother'
+import { instance, mock, verify } from '@typestrong/ts-mockito'
+import { HabitsRepository } from '../domain/habits.repository'
 
 describe('DeleteHabitService', () => {
-  let service: DeleteHabitCmd
+  it('should delete habits', async () => {
+    const { sut, habitsRepository } = setup()
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({})
-    service = TestBed.inject(DeleteHabitCmd)
-  })
+    await sut.handle({ id: IdMother.id() })
 
-  it('should be created', () => {
-    expect(service).toBeTruthy()
+    verify(habitsRepository.delete(IdMother.id())).once()
   })
 })
+
+function setup() {
+  const habitsRepository = mock<HabitsRepository>()
+
+  return {
+    habitsRepository,
+    sut: new DeleteHabitCmd(instance(habitsRepository)),
+  }
+}
