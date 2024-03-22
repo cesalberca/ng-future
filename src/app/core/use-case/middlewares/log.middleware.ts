@@ -2,13 +2,14 @@ import { Middleware } from './middleware'
 import { UseCaseHandler } from '../use-case-handler'
 import { UseCase } from '../use-case'
 import { Injectable } from '@angular/core'
+import { DateTime } from '../../datetime/datetime'
 
 @Injectable({
   providedIn: 'root',
 })
 export class LogMiddleware implements Middleware {
   intercept(params: unknown, useCase: UseCase): Promise<unknown> {
-    console.log(`[${new Date().toISOString()}] ${this.getName(useCase)} / ${this.printResult(params)}`)
+    console.log(`[${DateTime.fromNow().toISO()}] ${this.getName(useCase)} / ${this.printResult(params)}`)
     return useCase.handle(params)
   }
 

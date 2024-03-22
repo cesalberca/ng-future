@@ -8,4 +8,15 @@ export class HabitMother {
       name: 'Read',
     }
   }
+
+  static meditate(): Habit {
+    return {
+      id: IdMother.id2(),
+      name: 'Meditate',
+    }
+  }
+
+  static habits(): Habit[] {
+    return [this.reading(), this.meditate()]
+  }
 }
