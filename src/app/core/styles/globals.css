@@ -9,8 +9,7 @@ html {
 }
 
 html,
-body,
-#root {
+body {
   height: 100%;
 }
 
