@@ -5,6 +5,7 @@ import { CreateHabit } from '../../app/core/models/create-habit'
 import { LiveStorage } from '@mswjs/storage'
 import { Id } from '../../app/core/models/id'
 import { HabitMother } from '../mothers/habit.mother'
+import { UpdateHabit } from '../../app/core/models/update-habit'
 
 const habits = new LiveStorage<Habit[]>('habits', [HabitMother.reading()])
 
@@ -14,6 +15,14 @@ export const habitsHandler = [
       status: 200,
     }),
   ),
+  http.put<never, UpdateHabit, never>(api('habits/:id'), async ({ request }) => {
+    const data = await request.json()
+    console.log(data)
+    habits.update(x => x.map(x => (x.id === data.id ? { ...x, ...data } : x)))
+    return HttpResponse.json(data, {
+      status: 200,
+    })
+  }),
   http.post<CreateHabit, never, Habit>(api('habits'), async ({ request }) => {
     const data = await request.json()
     habits.update(x => [...x, data])

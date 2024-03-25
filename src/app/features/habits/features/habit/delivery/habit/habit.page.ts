@@ -7,11 +7,12 @@ import { Router } from '@angular/router'
 import { HabitRemoverComponent } from '../../../../delivery/habits/habit-remover/habit-remover.component'
 import { DeleteHabitCmd } from '../../../../application/delete-habit.cmd'
 import { UseCaseService } from '../../../../../../core/use-case/use-case.service'
+import { HabitUpdaterComponent } from '../../../../delivery/habits/habit-updater/habit-updater.component'
 
 @Component({
   selector: 'app-habit-page',
   standalone: true,
-  imports: [HabitComponent, HabitRemoverComponent],
+  imports: [HabitComponent, HabitRemoverComponent, HabitUpdaterComponent],
   templateUrl: './habit.page.html',
   styleUrl: './habit.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
