@@ -5,14 +5,14 @@ import { Habit } from '../../../../../../core/models/habit'
 import { UseCaseService } from '../../../../../../core/use-case/use-case.service'
 
 @Component({
-  selector: 'app-habit-remover',
+  selector: 'app-delete-habit',
   standalone: true,
   imports: [],
-  templateUrl: './habit-remover.component.html',
-  styleUrl: './habit-remover.component.css',
+  templateUrl: './delete-habit.component.html',
+  styleUrl: './delete-habit.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HabitRemoverComponent {
+export class DeleteHabitComponent {
   habit = input.required<Habit>()
 
   @Output()
