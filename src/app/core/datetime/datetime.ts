@@ -38,7 +38,8 @@ export class DateTime {
     return new DateTime(date.toISOString())
   }
 
-  static compareDates(a: DateTime, b: DateTime) {
-    return b.toMillis() - a.toMillis()
+  static compareDates(a: DateTime, b: DateTime, order: 'asc' | 'desc' = 'desc') {
+    if (order === 'desc') return b.toMillis() - a.toMillis()
+    else return a.toMillis() - b.toMillis()
   }
 }
