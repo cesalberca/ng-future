@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output, input } from '@angular/core'
-import { Id } from '../../../../../core/models/id'
+import { Id } from '../../../../../../core/models/id'
 
 @Component({
   selector: 'app-habit-remover',

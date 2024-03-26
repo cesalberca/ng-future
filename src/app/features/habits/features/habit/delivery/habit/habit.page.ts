@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angu
 import { Id } from '../../../../../../core/models/id'
 import { HabitsService } from '../../../../application/habits.service'
 import { Habit } from '../../../../../../core/models/habit'
-import { HabitComponent } from '../../../../../../core/components/habit/habit.component'
+import { HabitComponent } from '../../../../delivery/habit/habit.component'
 import { Router } from '@angular/router'
-import { HabitRemoverComponent } from '../../../../delivery/habits/habit-remover/habit-remover.component'
-import { DeleteHabitCmd } from '../../../../application/delete-habit.cmd'
+import { HabitRemoverComponent } from '../habit-remover/habit-remover.component'
+import { DeleteHabitCmd } from '../../../delete-habit/application/delete-habit.cmd'
 import { UseCaseService } from '../../../../../../core/use-case/use-case.service'
-import { HabitUpdaterComponent } from '../../../../delivery/habits/habit-updater/habit-updater.component'
+import { HabitUpdaterComponent } from '../habit-updater/habit-updater.component'
 
 @Component({
   selector: 'app-habit-page',

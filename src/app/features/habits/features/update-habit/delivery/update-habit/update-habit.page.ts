@@ -6,7 +6,7 @@ import { HabitsService } from '../../../../application/habits.service'
 import { FormModel } from '../../../../../../core/models/form-model'
 import { CreateHabitFormModel as CreateHabitForm } from '../../../../../../core/models/create-habit-form-model'
 import { UseCaseService } from '../../../../../../core/use-case/use-case.service'
-import { UpdateHabitCmd } from '../../../../application/update-habit.cmd'
+import { UpdateHabitCmd } from '../../application/update-habit.cmd'
 import { Router } from '@angular/router'
 
 type Model = FormModel<CreateHabitForm>

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core'
-import { Id } from '../../../../../core/models/id'
+import { Id } from '../../../../../../core/models/id'
 import { RouterLink } from '@angular/router'
 
 @Component({

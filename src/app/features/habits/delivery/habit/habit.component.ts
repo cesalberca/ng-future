@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core'
-import { Habit } from '../../models/habit'
+import { Habit } from '../../../../core/models/habit'
 import { RouterLink } from '@angular/router'
 
 @Component({
