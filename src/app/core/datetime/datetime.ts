@@ -13,6 +13,10 @@ export class DateTime {
     return this.luxonDateTime.toFormat(format, options)
   }
 
+  toMillis() {
+    return this.luxonDateTime.toMillis()
+  }
+
   /**
    *
    * @returns ISO string in UTC
@@ -32,5 +36,9 @@ export class DateTime {
 
   static fromDate(date: Date): DateTime {
     return new DateTime(date.toISOString())
+  }
+
+  static compareDates(a: DateTime, b: DateTime) {
+    return b.toMillis() - a.toMillis()
   }
 }

@@ -9,9 +9,9 @@
     }
   </header>
   <div class="data">
-    @for (habitTask of habitTasks(); track habitTask.date.toISO()) {
+    @for (habitTask of sortedHabitTasks(); track habitTask.date.toISO()) {
     <div class="row">
-      <div class="cell">{{habitTask.date.format('dd-LL-yyyy')}}</div>
+      <div class="cell">{{habitTask.date | habitTasksDate}}</div>
       @for (habitTask of habitTask.tasks; track habitTask.habit.id) {
       <div class="cell"><input type="checkbox" [value]="habitTask.done" /></div>
       }
