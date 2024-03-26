@@ -4,7 +4,9 @@ import { Habit } from '../../../core/models/habit'
 import { HabitsRepository } from '../domain/habits.repository'
 import { Id } from '../../../core/models/id'
 import { UpdateHabit } from '../../../core/models/update-habit'
-import { HabitTaskByDate } from '../../../core/models/habits'
+
+import { HabitTaskByDate } from '../features/habits/domain/habit-task-by-date'
+import { HabitMother } from '../../../../testing/mothers/habit.mother'
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +17,10 @@ export class HabitsInMemoryRepository implements HabitsRepository {
   async save(createHabit: CreateHabit): Promise<void> {
     const habits: Habit[] = [] //TODO: find all habits
     this.habits.set([...habits, createHabit])
+  }
+
+  async findOne(): Promise<Habit> {
+    return HabitMother.meditate()
   }
 
   async update(update: UpdateHabit): Promise<void> {
