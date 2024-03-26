@@ -1,5 +1,5 @@
 import { Query } from '../../../../../core/use-case/query'
-import { HabitTaskByDate } from '../domain/habit-task-by-date'
+import { HabitTask } from '../domain/habit-task'
 import { Inject, Injectable } from '@angular/core'
 import { HabitsRepository } from '../../../domain/habits.repository'
 import { InjectionTokens } from '../../../../../core/tokens/injection-tokens'
@@ -7,10 +7,10 @@ import { InjectionTokens } from '../../../../../core/tokens/injection-tokens'
 @Injectable({
   providedIn: 'root',
 })
-export class GetHabitTaskByDatesQry implements Query<HabitTaskByDate[]> {
+export class GetHabitTasksQry implements Query<HabitTask[]> {
   constructor(@Inject(InjectionTokens.HABITS_REPOSITORY) private readonly habitsRepository: HabitsRepository) {}
 
-  handle(): Promise<HabitTaskByDate[]> {
+  handle(): Promise<HabitTask[]> {
     return this.habitsRepository.findAll()
   }
 }

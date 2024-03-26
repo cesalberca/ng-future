@@ -5,7 +5,7 @@ import { HabitsRepository } from '../domain/habits.repository'
 import { Id } from '../../../core/models/id'
 import { UpdateHabit } from '../../../core/models/update-habit'
 
-import { HabitTaskByDate } from '../features/habits/domain/habit-task-by-date'
+import { HabitTask } from '../features/habit-tasks/domain/habit-task'
 import { HabitMother } from '../../../../testing/mothers/habit.mother'
 
 @Injectable({
@@ -27,7 +27,7 @@ export class HabitsInMemoryRepository implements HabitsRepository {
     this.habits.update(prev => prev.map(habit => (habit.id === update.id ? { ...habit, ...update } : habit)))
   }
 
-  async findAll(): Promise<HabitTaskByDate[]> {
+  async findAll(): Promise<HabitTask[]> {
     return []
   }
 

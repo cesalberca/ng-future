@@ -1,14 +1,14 @@
 import { DateTime } from '../../../core/datetime/datetime'
 import { HabitMother } from '../../../../testing/mothers/habit.mother'
-import { HabitTaskByDateDto } from './habit-task-by-date.dto'
+import { HabitTasksDto } from './habit-tasks.dto'
 import { IsoDate } from '../../../core/datetime/iso-date'
 
-export class HabitTaskByDateDtoMother {
-  static habitTaskByDatesDto(): HabitTaskByDateDto[] {
+export class HabitTasksDtoMother {
+  static habitTasksDto(): HabitTasksDto[] {
     return [
       {
         date: DateTime.fromISO('2024-03-22').toISO() as IsoDate,
-        habitTasks: [
+        tasks: [
           {
             habit: HabitMother.reading(),
             done: true,
@@ -21,7 +21,7 @@ export class HabitTaskByDateDtoMother {
       },
       {
         date: DateTime.fromISO('2024-03-21').toISO() as IsoDate,
-        habitTasks: [
+        tasks: [
           {
             habit: HabitMother.reading(),
             done: false,

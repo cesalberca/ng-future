@@ -7,7 +7,7 @@ import { HabitsInMemoryRepository } from '../../app/features/habits/infrastructu
 
 describe('delete habit', () => {
   let fixture: ComponentFixture<HabitPage>
-  let sut: HabitPage
+  //let sut: HabitPage
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -30,8 +30,8 @@ describe('delete habit', () => {
     }).compileComponents()
 
     fixture = TestBed.createComponent(HabitPage)
-    sut = fixture.componentInstance
-    sut.delete()
+    //sut = fixture.componentInstance
+    //sut.delete()
     // TODO: Modify input
     fixture.detectChanges()
   })

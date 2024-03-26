@@ -1,6 +1,6 @@
 import { Habit } from '../../app/core/models/habit'
 import { IdMother } from './id.mother'
-import { HabitTaskByDate } from '../../app/features/habits/features/habits/domain/habit-task-by-date'
+import { HabitTask } from '../../app/features/habits/features/habit-tasks/domain/habit-task'
 import { DateTime } from '../../app/core/datetime/datetime'
 
 export class HabitMother {
@@ -22,7 +22,7 @@ export class HabitMother {
     return [this.reading(), this.meditate()]
   }
 
-  static habitTaskByDates(): HabitTaskByDate[] {
+  static habitTaskByDates(): HabitTask[] {
     return [
       {
         date: DateTime.fromISO('2024-03-22'),

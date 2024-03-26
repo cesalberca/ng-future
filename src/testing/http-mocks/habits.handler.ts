@@ -6,14 +6,14 @@ import { LiveStorage } from '@mswjs/storage'
 import { Id } from '../../app/core/models/id'
 import { HabitMother } from '../mothers/habit.mother'
 import { UpdateHabit } from '../../app/core/models/update-habit'
-import { HabitTaskByDateDtoMother } from '../../app/features/habits/infrastructure/habit-task-by-date-dto.mother'
-import { HabitTaskByDateDto } from '../../app/features/habits/infrastructure/habit-task-by-date.dto'
+import { HabitTasksDtoMother } from '../../app/features/habits/infrastructure/habit-tasks-dto.mother'
+import { HabitTasksDto } from '../../app/features/habits/infrastructure/habit-tasks.dto'
 
 const habits = new LiveStorage<Habit[]>('habits', [HabitMother.reading()])
 
 export const habitsHandler = [
-  http.get<never, never, HabitTaskByDateDto[]>(api('habits'), () =>
-    HttpResponse.json(HabitTaskByDateDtoMother.habitTaskByDatesDto(), {
+  http.get<never, never, HabitTasksDto[]>(api('habits'), () =>
+    HttpResponse.json(HabitTasksDtoMother.habitTasksDto(), {
       status: 200,
     }),
   ),

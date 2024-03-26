@@ -1,9 +1,9 @@
 import { DateTime } from '../../../../../core/datetime/datetime'
 import { Habit } from '../../../../../core/models/habit'
 
-export interface HabitTaskByDate {
+export interface HabitTask {
   date: DateTime
-  habitTasks: {
+  tasks: {
     habit: Habit
     done: boolean
   }[]
