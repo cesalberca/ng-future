@@ -1,6 +1,6 @@
 @if (habit()) {
 <app-habit data-test-id="habits" [habit]="habit()!">
   <app-habit-updater [habitId]="habit()!.id" habit-actions />
-  <app-habit-remover [habitId]="habit()!.id" habit-actions (deleted)="delete()" />
+  <app-habit-remover [habit]="habit()!" habit-actions (deleted)="onDelete()" />
 </app-habit>
 }

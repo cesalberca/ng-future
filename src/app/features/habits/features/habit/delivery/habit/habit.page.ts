@@ -3,11 +3,9 @@ import { Id } from '../../../../../../core/models/id'
 import { HabitsService } from '../../../../application/habits.service'
 import { Habit } from '../../../../../../core/models/habit'
 import { HabitComponent } from '../../../../delivery/habit/habit.component'
-import { Router } from '@angular/router'
-import { HabitRemoverComponent } from '../habit-remover/habit-remover.component'
-import { DeleteHabitCmd } from '../../../delete-habit/application/delete-habit.cmd'
-import { UseCaseService } from '../../../../../../core/use-case/use-case.service'
+import { HabitRemoverComponent } from '../../../delete-habit/delivery/habit-remover/habit-remover.component'
 import { HabitUpdaterComponent } from '../habit-updater/habit-updater.component'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-habit-page',
@@ -22,7 +20,6 @@ export class HabitPage {
   habit = signal<Habit | undefined>(undefined)
 
   constructor(
-    private readonly useCaseService: UseCaseService,
     private readonly habitsService: HabitsService,
     private readonly router: Router,
   ) {
@@ -32,17 +29,7 @@ export class HabitPage {
     })
   }
 
-  async delete() {
-    const name = this.habit()?.name
-    await this.useCaseService.execute(
-      DeleteHabitCmd,
-      { id: this.id() },
-      {
-        message: {
-          title: `Habit ${name} deleted`,
-        },
-      },
-    )
+  onDelete() {
     this.router.navigate(['..'])
   }
 }
