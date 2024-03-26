@@ -15,7 +15,10 @@ export class ToastMiddleware implements Middleware {
       message += '\n' + options.message.description
     }
 
-    alert(message)
+    if (message) {
+      alert(message)
+    }
+
     return result
   }
 }

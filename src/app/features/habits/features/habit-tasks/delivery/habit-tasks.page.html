@@ -1,18 +1,22 @@
 @if(habitTasks().length === 0) {
 <li>There are no habits.</li>
 } @else {
-<div class="container">
-  <header>
+<div class="habit-tasks-table">
+  <header class="headers">
+    <div class="header">Date</div>
     @for (header of headers(); track header.id) {
-    <div>{{header.name}}</div>
+    <div class="header">{{header.name}}</div>
     }
   </header>
-  <div>
-    @for (habitTask of habitTasks(); track habitTask.date.toISO()) { @for (habitTask of habitTask.tasks; track
-    habitTask.habit.id) {
-    <div>{{ habitTask.habit.name}}</div>
-    <input type="checkbox" [value]="habitTask.done" />
-    } }
+  <div class="data">
+    @for (habitTask of habitTasks(); track habitTask.date.toISO()) {
+    <div class="row">
+      <div class="cell">{{habitTask.date.format('dd-LL-yyyy')}}</div>
+      @for (habitTask of habitTask.tasks; track habitTask.habit.id) {
+      <div class="cell"><input type="checkbox" [value]="habitTask.done" /></div>
+      }
+    </div>
+    }
   </div>
 </div>
 }

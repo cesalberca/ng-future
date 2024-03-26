@@ -16,7 +16,6 @@ import { GetHabitTasksQry } from '../application/get-habit-tasks.qry'
 export class HabitTasksPage {
   habitTasks = signal<HabitTask[]>([])
   headers = computed(() => this.habitTasks()?.[0].tasks.map(x => x.habit) ?? [])
-
   constructor(private readonly useCaseService: UseCaseService) {
     effect(async () => {
       const value = await this.useCaseService.execute(GetHabitTasksQry)
