@@ -1,4 +1,4 @@
-@if(habitTaskByDates().length === 0) {
+@if(habitTasks().length === 0) {
 <li>There are no habits.</li>
 } @else {
 <div class="container">
@@ -8,8 +8,8 @@
     }
   </header>
   <div>
-    @for (habitTaskByDate of habitTaskByDates(); track habitTaskByDate.date.toISO()) { @for (habitTask of
-    habitTaskByDate.habitTasks; track habitTask.habit.id) {
+    @for (habitTask of habitTasks(); track habitTask.date.toISO()) { @for (habitTask of habitTask.tasks; track
+    habitTask.habit.id) {
     <div>{{ habitTask.habit.name}}</div>
     <input type="checkbox" [value]="habitTask.done" />
     } }

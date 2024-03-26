@@ -26,7 +26,7 @@ export class HabitMother {
     return [
       {
         date: DateTime.fromISO('2024-03-22'),
-        habitTasks: [
+        tasks: [
           {
             habit: HabitMother.reading(),
             done: true,
@@ -39,7 +39,7 @@ export class HabitMother {
       },
       {
         date: DateTime.fromISO('2024-03-21'),
-        habitTasks: [
+        tasks: [
           {
             habit: HabitMother.reading(),
             done: false,

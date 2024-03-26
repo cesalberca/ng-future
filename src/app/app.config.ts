@@ -12,6 +12,7 @@ import { LogMiddleware } from './core/use-case/middlewares/log.middleware'
 import { ErrorMiddleware } from './core/use-case/middlewares/error.middleware'
 import { ToastMiddleware } from './core/use-case/middlewares/toast.middleware'
 import { GlobalErrorHandler } from './core/errors/global-error-handler'
+import { HabitTasksHttpRepository } from './features/habits/infrastructure/habit-tasks-http.repository'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,6 +28,10 @@ export const appConfig: ApplicationConfig = {
     {
       provide: InjectionTokens.HABITS_REPOSITORY,
       useClass: HabitsHttpRepository,
+    },
+    {
+      provide: InjectionTokens.HABIT_TASKS_REPOSITORY,
+      useClass: HabitTasksHttpRepository,
     },
     {
       provide: InjectionTokens.MIDDLEWARES,
