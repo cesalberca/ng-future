@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core'
 import { HabitsRepository } from '../domain/habits.repository'
 import { CreateHabit } from '../../../core/models/create-habit'
-import { Habit } from '../../../core/models/habit'
 import { HttpClient } from '@angular/common/http'
 import { firstValueFrom } from 'rxjs'
 import { Id } from '../../../core/models/id'
 import { UpdateHabit } from '../../../core/models/update-habit'
+import { HabitTaskByDate } from '../../../core/models/habits'
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,7 @@ export class HabitsHttpRepository implements HabitsRepository {
     return firstValueFrom(this.httpClient.post<void>('habits', createHabit))
   }
 
-  findAll(): Promise<Habit[]> {
-    return firstValueFrom(this.httpClient.get<Habit[]>('habits'))
+  findAll(): Promise<HabitTaskByDate[]> {
+    return firstValueFrom(this.httpClient.get<HabitTaskByDate[]>('habits'))
   }
 }
