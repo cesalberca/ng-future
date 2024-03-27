@@ -12,6 +12,11 @@
   border-bottom: 1px solid var(--gray-100);
 }
 
+.header a {
+  color: var(--on-background-color);
+  text-decoration: none;
+}
+
 .data {
   display: flex;
   flex-direction: column;

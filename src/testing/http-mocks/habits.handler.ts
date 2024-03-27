@@ -16,6 +16,14 @@ export const habitsHandler = [
       status: 200,
     }),
   ),
+  http.get<{ id: Id }, never, Habit>(api('habits/:id'), ({ params }) =>
+    HttpResponse.json(
+      habits.getValue().find(habit => habit.id === params.id),
+      {
+        status: 200,
+      },
+    ),
+  ),
   http.put<never, UpdateHabit, never>(api('habits/:id'), async ({ request }) => {
     const data = await request.json()
     console.log(data)
