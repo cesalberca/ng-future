@@ -4,7 +4,6 @@ import { RouterLink } from '@angular/router'
 import { UseCaseService } from '../../../../../core/use-case/use-case.service'
 import { HabitTask } from '../domain/habit-task'
 import { GetHabitTasksQry } from '../application/get-habit-tasks.qry'
-import { DateTime } from '../../../../../core/datetime/datetime'
 import { HabitTasksDatePipe } from './habit-tasks-date.pipe'
 import { ButtonComponent } from '../../../../../core/components/button/button.component'
 
@@ -19,7 +18,6 @@ import { ButtonComponent } from '../../../../../core/components/button/button.co
 export class HabitTasksPage {
   habitTasks = signal<HabitTask[]>([])
   headers = computed(() => this.habitTasks()?.[0].tasks.map(x => x.habit) ?? [])
-  sortedHabitTasks = computed(() => this.habitTasks().sort((a, b) => DateTime.compareDates(a.date, b.date)))
   constructor(private readonly useCaseService: UseCaseService) {
     effect(async () => {
       const value = await this.useCaseService.execute(GetHabitTasksQry)
