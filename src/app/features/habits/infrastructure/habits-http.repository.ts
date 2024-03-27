@@ -6,10 +6,7 @@ import { firstValueFrom } from 'rxjs'
 import { Id } from '../../../core/models/id'
 import { UpdateHabit } from '../../../core/models/update-habit'
 
-import { HabitTask } from '../features/habit-tasks/domain/habit-task'
 import { Habit } from '../../../core/models/habit'
-import { DateTime } from '../../../core/datetime/datetime'
-import { HabitTasksDto } from './habit-tasks.dto'
 
 @Injectable({
   providedIn: 'root',
@@ -33,8 +30,8 @@ export class HabitsHttpRepository implements HabitsRepository {
     return firstValueFrom(this.httpClient.post<void>('habits', createHabit))
   }
 
-  async findAll(): Promise<HabitTask[]> {
-    const habitTaskByDates = await firstValueFrom(this.httpClient.get<HabitTasksDto[]>('habits'))
-    return habitTaskByDates.map(x => ({ ...x, date: DateTime.fromISO(x.date) }))
+  async findAll(): Promise<Habit[]> {
+    const habits = await firstValueFrom(this.httpClient.get<Habit[]>('habits'))
+    return habits
   }
 }

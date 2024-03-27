@@ -17,6 +17,12 @@ export class DateTime {
     return this.luxonDateTime.toMillis()
   }
 
+  plus(options: { [key: string]: number }): DateTime | null {
+    const date = this.luxonDateTime.plus(options).toUTC().toISO()
+    if (!date) return null
+    return new DateTime(date)
+  }
+
   /**
    *
    * @returns ISO string in UTC
@@ -36,5 +42,9 @@ export class DateTime {
 
   static fromDate(date: Date): DateTime {
     return new DateTime(date.toISOString())
+  }
+  static compareDates(a: DateTime, b: DateTime, order: 'asc' | 'desc' = 'desc') {
+    if (order === 'desc') return b.toMillis() - a.toMillis()
+    else return a.toMillis() - b.toMillis()
   }
 }

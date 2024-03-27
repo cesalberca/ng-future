@@ -6,14 +6,13 @@ import { LiveStorage } from '@mswjs/storage'
 import { Id } from '../../app/core/models/id'
 import { HabitMother } from '../mothers/habit.mother'
 import { UpdateHabit } from '../../app/core/models/update-habit'
-import { HabitTasksDtoMother } from '../../app/features/habits/infrastructure/habit-tasks-dto.mother'
-import { HabitTasksDto } from '../../app/features/habits/infrastructure/habit-tasks.dto'
+import { habitTasks } from './habit-tasks.handler'
 
-const habits = new LiveStorage<Habit[]>('habits', [HabitMother.reading()])
+export const habits = new LiveStorage<Habit[]>('habits', [HabitMother.reading()])
 
 export const habitsHandler = [
-  http.get<never, never, HabitTasksDto[]>(api('habits'), () =>
-    HttpResponse.json(HabitTasksDtoMother.habitTasksDto(), {
+  http.get<never, never, Habit[]>(api('habits'), () =>
+    HttpResponse.json(habits.getValue(), {
       status: 200,
     }),
   ),
@@ -28,6 +27,8 @@ export const habitsHandler = [
   http.post<CreateHabit, never, Habit>(api('habits'), async ({ request }) => {
     const data = await request.json()
     habits.update(x => [...x, data])
+    // TODO: change current update with a http post
+    habitTasks.update(x => x.map(({ date, tasks }) => ({ date, tasks: [...tasks, { habit: data, done: false }] })))
     return HttpResponse.json(data, {
       status: 200,
     })
@@ -36,7 +37,6 @@ export const habitsHandler = [
     const data = params.id
 
     habits.update(x => x.filter(y => y.id !== data))
-
     return HttpResponse.json(undefined, {
       status: 204,
     })

@@ -7,19 +7,6 @@ export class HabitTasksDtoMother {
   static habitTasksDto(): HabitTasksDto[] {
     return [
       {
-        date: DateTime.fromNow().toISO() as IsoDate,
-        tasks: [
-          {
-            habit: HabitMother.reading(),
-            done: true,
-          },
-          {
-            habit: HabitMother.meditate(),
-            done: false,
-          },
-        ],
-      },
-      {
         date: DateTime.fromISO('2024-03-22').toISO() as IsoDate,
         tasks: [
           {
