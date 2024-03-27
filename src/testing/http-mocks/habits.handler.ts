@@ -8,7 +8,7 @@ import { HabitMother } from '../mothers/habit.mother'
 import { UpdateHabit } from '../../app/core/models/update-habit'
 import { habitTasks } from './habit-tasks.handler'
 
-export const habits = new LiveStorage<Habit[]>('habits', [HabitMother.reading()])
+export const habits = new LiveStorage<Habit[]>('habits', HabitMother.habits())
 
 export const habitsHandler = [
   http.get<never, never, Habit[]>(api('habits'), () =>
