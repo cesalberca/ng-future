@@ -6,11 +6,12 @@ import { HabitTask } from '../domain/habit-task'
 import { GetHabitTasksQry } from '../application/get-habit-tasks.qry'
 import { DateTime } from '../../../../../core/datetime/datetime'
 import { HabitTasksDatePipe } from './habit-tasks-date.pipe'
+import { ButtonComponent } from '../../../../../core/components/button/button.component'
 
 @Component({
   selector: 'app-habit-tasks',
   standalone: true,
-  imports: [HabitComponent, RouterLink, HabitTasksDatePipe],
+  imports: [HabitComponent, RouterLink, HabitTasksDatePipe, ButtonComponent],
   templateUrl: './habit-tasks.page.html',
   styleUrl: './habit-tasks.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

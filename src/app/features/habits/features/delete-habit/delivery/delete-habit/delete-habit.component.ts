@@ -3,11 +3,12 @@ import { Id } from '../../../../../../core/models/id'
 import { DeleteHabitCmd } from '../../application/delete-habit.cmd'
 import { Habit } from '../../../../../../core/models/habit'
 import { UseCaseService } from '../../../../../../core/use-case/use-case.service'
+import { ButtonComponent } from '../../../../../../core/components/button/button.component'
 
 @Component({
   selector: 'app-delete-habit',
   standalone: true,
-  imports: [],
+  imports: [ButtonComponent],
   templateUrl: './delete-habit.component.html',
   styleUrl: './delete-habit.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

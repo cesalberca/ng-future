@@ -8,13 +8,14 @@ import { CreateHabitFormModel as CreateHabitForm } from '../../../../../../core/
 import { UseCaseService } from '../../../../../../core/use-case/use-case.service'
 import { UpdateHabitCmd } from '../../application/update-habit.cmd'
 import { Router } from '@angular/router'
+import { ButtonComponent } from '../../../../../../core/components/button/button.component'
 
 type Model = FormModel<CreateHabitForm>
 
 @Component({
   selector: 'app-update-habit-page',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ButtonComponent],
   templateUrl: './update-habit.page.html',
   styleUrl: './update-habit.page.css',
 })
