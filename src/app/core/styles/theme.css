@@ -1,4 +1,17 @@
 :root {
+  /* Base Palette */
+  --gray-100: oklch(97.12% 0.002 325.59);
+  --gray-900: oklch(19.37% 0.006 300.98);
+  --electric-violet: oklch(53.18% 0.28 296.97);
+  --orange-red: oklch(63.32% 0.24 31.68);
+  --vivid-pink: oklch(69.02% 0.277 332.77);
+  --hot-red: oklch(61.42% 0.238 15.34);
+  --light-pink: color-mix(in srgb, var(--vivid-pink) 10%, white 80%);
+  --light-red: color-mix(in srgb, var(--hot-red) 10%, white 80%);
+  --page-bg-radial-gradient: radial-gradient(circle, white 0%, white 100%);
+  --soft-pink-radial-gradient: radial-gradient(circle at center bottom, white 0%, var(--light-pink) 70%);
+  --soft-red-radial-gradient: radial-gradient(circle at center bottom, white 0%, var(--light-red) 70%);
+
   /* Palette */
   --background-color: oklch(1 0 89.876);
   --on-background-color: oklch(0.169 0.004 285.951);
@@ -13,21 +26,6 @@
   --on-error-color: oklch(1 0 89.876);
   --success-color: oklch(79.12% 0.257 155.13);
   --on-success-color: oklch(1 0 89.876);
-
-  --gray-100: oklch(97.12% 0.002 325.59);
-  --gray-900: oklch(19.37% 0.006 300.98);
-
-  --primary-contrast: var(--gray-900);
-
-  --electric-violet: oklch(53.18% 0.28 296.97);
-  --orange-red: oklch(63.32% 0.24 31.68);
-  --vivid-pink: oklch(69.02% 0.277 332.77);
-  --hot-red: oklch(61.42% 0.238 15.34);
-  --light-pink: color-mix(in srgb, var(--vivid-pink) 10%, white 80%);
-  --light-red: color-mix(in srgb, var(--hot-red) 10%, white 80%);
-  --page-bg-radial-gradient: radial-gradient(circle, white 0%, white 100%);
-  --soft-pink-radial-gradient: radial-gradient(circle at center bottom, white 0%, var(--light-pink) 70%);
-  --soft-red-radial-gradient: radial-gradient(circle at center bottom, white 0%, var(--light-red) 70%);
 
   /* Misc */
   --border-radius: var(--xs);
