@@ -1,3 +1,72 @@
 :host {
   display: block;
+  --angle: 90deg;
+}
+
+:host.custom-btn {
+  display: block;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: relative;
+  border-radius: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  width: max-content;
+  color: transparent;
+  border-image: 1px solid
+    linear-gradient(var(--angle), var(--orange-red) 0%, var(--vivid-pink) 50%, var(--electric-violet) 100%);
+}
+
+:host.custom-btn--primary {
+  background: linear-gradient(var(--angle), var(--orange-red) 0%, var(--vivid-pink) 50%, var(--electric-violet) 100%);
+}
+:host.custom-btn--warn {
+  background: linear-gradient(var(--angle), var(--hot-red) 0%, var(--hot-red) 50%, var(--hot-red) 100%);
+}
+
+:host.custom-btn::before {
+  content: attr(text);
+  position: absolute;
+  inset: 1px;
+  background: var(--page-bg-radial-gradient);
+  border-radius: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    opacity 0.3s ease,
+    background 0.3s ease;
+  font-size: 1rem;
+  font-weight: 600;
+}
+:host.custom-btn--primary::before {
+  color: var(--primary-contrast);
+}
+:host.custom-btn--warn::before {
+  color: var(--hot-red);
+}
+
+:host.custom-btn:hover {
+  animation: spin-gradient 4s linear infinite forwards;
+}
+:host.custom-btn:hover:before {
+  opacity: 0.9;
+}
+:host.custom-btn--primary:hover:before {
+  background: var(--soft-pink-radial-gradient);
+}
+:host.custom-btn--warn:hover:before {
+  background: var(--soft-red-radial-gradient);
+}
+:host.custom-btn:active:before {
+  opacity: 0.8;
+}
+
+@keyframes spin-gradient {
+  0% {
+    --angle: 90deg;
+  }
+  100% {
+    --angle: 450deg;
+  }
 }
