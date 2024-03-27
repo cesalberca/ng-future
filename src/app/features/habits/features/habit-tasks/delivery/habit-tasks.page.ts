@@ -17,11 +17,19 @@ import { ButtonComponent } from '../../../../../core/components/button/button.co
 })
 export class HabitTasksPage {
   habitTasks = signal<HabitTask[]>([])
-  headers = computed(() => this.habitTasks()?.[0].tasks.map(x => x.habit) ?? [])
+  headers = computed(() => this.habitTasks()?.[0]?.tasks.map(x => x.habit) ?? [], {
+    equal: (a, b) => {
+      alert('HOLAAAA')
+      return JSON.stringify(a) === JSON.stringify(b)
+    },
+  })
+
   constructor(private readonly useCaseService: UseCaseService) {
     effect(async () => {
       const value = await this.useCaseService.execute(GetHabitTasksQry)
       this.habitTasks.set(value)
+      console.log(this.habitTasks())
+      console.log(this.headers())
     })
   }
 }

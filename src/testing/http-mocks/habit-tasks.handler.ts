@@ -35,7 +35,7 @@ export const habitTasksHandler = [
     const res = [...newDates, ...habitTasks.getValue()].sort((a, b) =>
       DateTime.compareDates(DateTime.fromISO(a.date), DateTime.fromISO(b.date)),
     )
-
+    habitTasks.update(() => res)
     return HttpResponse.json(res, {
       status: 200,
     })

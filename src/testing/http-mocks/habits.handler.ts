@@ -26,8 +26,14 @@ export const habitsHandler = [
   ),
   http.put<never, UpdateHabit, never>(api('habits/:id'), async ({ request }) => {
     const data = await request.json()
-    console.log(data)
     habits.update(x => x.map(x => (x.id === data.id ? { ...x, ...data } : x)))
+    // TODO: change current update with a http put
+    habitTasks.update(x =>
+      x.map(({ date, tasks }) => ({
+        date,
+        tasks: tasks.map(task => (task.habit.id === data.id ? { ...task, habit: { ...task.habit, ...data } } : task)),
+      })),
+    )
     return HttpResponse.json(data, {
       status: 200,
     })
