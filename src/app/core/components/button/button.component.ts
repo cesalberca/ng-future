@@ -8,7 +8,6 @@ import { Component, HostBinding, Input } from '@angular/core'
   styleUrl: './button.component.css',
 })
 export class ButtonComponent {
-  @Input() text: string = ''
   @Input() variant: 'primary' | 'warn' = 'primary'
 
   @HostBinding('class.primary') get primary() {
