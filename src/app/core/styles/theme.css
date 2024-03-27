@@ -26,8 +26,8 @@
   --light-pink: color-mix(in srgb, var(--vivid-pink) 10%, white 80%);
   --light-red: color-mix(in srgb, var(--hot-red) 10%, white 80%);
   --page-bg-radial-gradient: radial-gradient(circle, white 0%, white 100%);
-  --soft-pink-radial-gradient: radial-gradient(circle at center bottom, var(--light-pink) 0%, white 80%);
-  --soft-red-radial-gradient: radial-gradient(circle at center bottom, var(--light-red) 0%, white 80%);
+  --soft-pink-radial-gradient: radial-gradient(circle at center bottom, white 0%, var(--light-pink) 70%);
+  --soft-red-radial-gradient: radial-gradient(circle at center bottom, white 0%, var(--light-red) 70%);
 
   /* Misc */
   --border-radius: var(--xs);
