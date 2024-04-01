@@ -1,18 +1,15 @@
-import { HttpClient } from '@angular/common/http'
-import { Injectable } from '@angular/core'
-import { firstValueFrom } from 'rxjs'
+import { Inject, Injectable } from '@angular/core'
+import { InjectionTokens } from '../../../core/tokens/injection-tokens'
+import { AuthRepository } from '../domain/auth.repository'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor(@Inject(InjectionTokens.AUTH_REPOSITORY) private readonly authRepository: AuthRepository) {}
 
   login(email: string, password: string) {
-    console.log('sign in', email, password)
-    //1. auth repository?
-    //2. how to know that the user is logged in? save token or some user data?
-    return firstValueFrom(this.httpClient.post('auth/login', { email, password }))
+    return this.authRepository.login(email, password)
   }
 
   register(email: string, password: string) {

@@ -13,6 +13,7 @@ import { ErrorMiddleware } from './core/use-case/middlewares/error.middleware'
 import { ToastMiddleware } from './core/use-case/middlewares/toast.middleware'
 import { GlobalErrorHandler } from './core/errors/global-error-handler'
 import { HabitTasksHttpRepository } from './features/habits/infrastructure/habit-tasks-http.repository'
+import { AuthHttpRepository } from './features/auth/infrastructure/auth-http.repository'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,6 +25,10 @@ export const appConfig: ApplicationConfig = {
     {
       provide: InjectionTokens.STORAGE,
       useValue: globalThis.localStorage,
+    },
+    {
+      provide: InjectionTokens.AUTH_REPOSITORY,
+      useClass: AuthHttpRepository,
     },
     {
       provide: InjectionTokens.HABITS_REPOSITORY,
