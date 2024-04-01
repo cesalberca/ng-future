@@ -6,6 +6,7 @@ import { HabitTasksDto } from '../../app/features/habits/infrastructure/habit-ta
 import { DateTime } from '../../app/core/datetime/datetime'
 import { IsoDate } from '../../app/core/datetime/iso-date'
 import { Habit } from '../../app/core/models/habit'
+import { UpdateHabitTasks } from '../../app/core/models/update-habit-tasks'
 
 export const habitTasks = new LiveStorage<HabitTasksDto[]>('habitTasks', HabitTasksDtoMother.habitTasksDto())
 
@@ -35,6 +36,25 @@ export const habitTasksHandler = [
     const res = [...newDates, ...habitTasks.getValue()].sort((a, b) =>
       DateTime.compareDates(DateTime.fromISO(a.date), DateTime.fromISO(b.date)),
     )
+    habitTasks.update(() => res)
+    return HttpResponse.json(res, {
+      status: 200,
+    })
+  }),
+  http.put<never, UpdateHabitTasks, HabitTasksDto[]>(api('habit-tasks/:id'), async ({ request }) => {
+    const data = await request.json()
+    const res: HabitTasksDto[] = habitTasks
+      .getValue()
+      .map(habitTasks =>
+        JSON.stringify(habitTasks.date) !== JSON.stringify(data.date)
+          ? habitTasks
+          : {
+              ...habitTasks,
+              tasks: habitTasks.tasks.map(task =>
+                task.habit.id !== data.updatedTask.habit.id ? task : { ...task, ...data.updatedTask },
+              ),
+            },
+      )
     habitTasks.update(() => res)
     return HttpResponse.json(res, {
       status: 200,

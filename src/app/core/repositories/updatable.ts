@@ -1,3 +1,3 @@
-export interface Updatable<Update> {
-  update(update: Update): Promise<void>
+export interface Updatable<Update, Return = void> {
+  update(update: Update): Promise<Return>
 }
