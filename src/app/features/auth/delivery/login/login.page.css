@@ -1,5 +1,5 @@
 :host {
-  --input-default-color: #005cbb;
+  --input-focus-color: #005cbb;
   --input-background-color: #e0e2ec;
 
   display: block;
@@ -15,13 +15,13 @@ section {
 
 header {
   text-align: center;
+  padding: 15px 5px;
 }
 
 h1 {
   font-size: 56px;
   font-weight: 500;
   line-height: 56px;
-  margin: 15px 5px;
 }
 
 form {
@@ -35,7 +35,7 @@ label {
 }
 
 label:focus-within {
-  color: var(--input-default-color);
+  color: var(--input-focus-color);
 }
 
 input {
@@ -50,5 +50,5 @@ input {
 
 input:focus-visible {
   outline: none;
-  border-bottom: var(--input-default-color) 1px solid;
+  border-bottom: var(--input-focus-color) 1px solid;
 }
