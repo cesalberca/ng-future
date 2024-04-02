@@ -6,7 +6,13 @@
     <div class="form-field">
       <label>
         Email
-        <input required formControlName="email" type="email" autocomplete="username" />
+        <input
+          required
+          formControlName="email"
+          type="email"
+          autocomplete="username"
+          [attr.data-touched]="email?.touched || email?.dirty"
+        />
       </label>
       @if(email?.invalid && (email?.dirty || email?.touched)){ @if(email?.errors?.["required"]) {
       <p class="form-field-error">Campo obligatorio</p>
@@ -17,7 +23,13 @@
     <div class="form-field">
       <label>
         Password
-        <input required formControlName="password" type="password" autocomplete="current-password" />
+        <input
+          required
+          formControlName="password"
+          type="password"
+          autocomplete="current-password"
+          [attr.data-touched]="password?.touched || password?.dirty"
+        />
       </label>
       @if(password?.invalid && (password?.dirty || password?.touched)){ @if(password?.errors?.["required"]) {
       <p class="form-field-error">Campo obligatorio</p>

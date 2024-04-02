@@ -42,7 +42,7 @@ label:focus-within {
   color: var(--form-field-focus-color);
 }
 
-label:has(input:focus-within:invalid) {
+label:has(input[data-touched='true']:invalid) {
   color: var(--form-field-error-color);
 }
 
@@ -61,7 +61,7 @@ input:focus-visible {
   border-bottom: var(--form-field-focus-color) 1px solid;
 }
 
-input:focus-visible:invalid {
+input[data-touched='true']:focus-visible:invalid {
   border-bottom: var(--form-field-error-color) 1px solid;
 }
 
