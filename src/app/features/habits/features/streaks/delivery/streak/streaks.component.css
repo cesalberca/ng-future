@@ -4,7 +4,43 @@
 }
 
 .streaks {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+}
+
+.streaks thead {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.streaks tbody {
+  padding-top: 12px;
+}
+
+.streaks thead,
+.streaks tbody {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(auto-fill, 1fr);
   gap: 12px;
+}
+
+.streaks thead tr,
+.streaks tbody tr {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.streaks thead tr th,
+.streaks tbody tr td {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.streaks thead tr th:nth-child(1),
+.streaks tbody tr td:nth-child(1) {
+  justify-content: flex-start;
 }

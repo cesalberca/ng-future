@@ -13,4 +13,5 @@ export class StreaksComponent {
 
   habitTasks = input.required<HabitTask[]>()
   streaks = computed(() => this.streaksService.calculateStreaks(this.habitTasks()))
+  countToString = (count: number) => this.streaksService.streakCountToString(count)
 }

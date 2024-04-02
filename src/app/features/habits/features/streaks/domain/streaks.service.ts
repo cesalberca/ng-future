@@ -46,4 +46,15 @@ export class StreaksService {
     const streaks = this.getStreaksFromStreaksMap(streaksMap)
     return streaks
   }
+
+  streakCountToString(count: number) {
+    if (count === 1) return `${count} día`
+    if (count < 7) return `${count} días`
+    if (count < 30 && Math.floor(count / 7) === 1) return `${Math.floor(count / 7)} semana`
+    if (count < 30 && Math.floor(count / 7) > 1) return `${Math.floor(count / 7)} semanas`
+    if (count < 365 && Math.floor(count / 30) === 1) return `${Math.floor(count / 30)} mes`
+    if (count < 365 && Math.floor(count / 30) > 1) return `${Math.floor(count / 30)} meses`
+    if (Math.floor(count / 365) === 1) return `${Math.floor(count / 365)} año`
+    return `${Math.floor(count / 365)} años`
+  }
 }
