@@ -5,11 +5,11 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <label>
       Email
-      <input formControlName="email" type="email" />
+      <input formControlName="email" type="email" autocomplete="username" />
     </label>
     <label>
       Password
-      <input formControlName="password" type="password" />
+      <input formControlName="password" type="password" autocomplete="current-password" />
     </label>
     <button app-button type="submit">Submit</button>
   </form>
