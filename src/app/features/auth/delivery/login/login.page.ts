@@ -25,10 +25,19 @@ export class LoginPage {
 
   form = this.formBuilder.group<LoginFormModel>({
     email: this.formBuilder.control('', [Validators.required, Validators.email]),
-    password: this.formBuilder.control('', [Validators.required, Validators.minLength(6)]),
+    password: this.formBuilder.control('', [Validators.required]),
   })
 
+  get email() {
+    return this.form.get('email')
+  }
+
+  get password() {
+    return this.form.get('password')
+  }
+
   async onSubmit() {
+    this.form.markAllAsTouched()
     if (!this.form.valid) return
     const email = this.form.get('email')?.value ?? ''
     const password = this.form.get('password')?.value ?? ''

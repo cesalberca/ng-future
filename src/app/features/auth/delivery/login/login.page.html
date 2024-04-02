@@ -3,14 +3,26 @@
     <h1>Login</h1>
   </header>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <label>
-      Email
-      <input formControlName="email" type="email" autocomplete="username" />
-    </label>
-    <label>
-      Password
-      <input formControlName="password" type="password" autocomplete="current-password" />
-    </label>
+    <div class="form-field">
+      <label>
+        Email
+        <input required formControlName="email" type="email" autocomplete="username" />
+      </label>
+      @if(email?.invalid && (email?.dirty || email?.touched)){ @if(email?.errors?.["required"]) {
+      <p class="form-field-error">Campo obligatorio</p>
+      } @if(email?.errors?.["email"]) {
+      <p class="form-field-error">Dirección de correo electrónico no válida</p>
+      } }
+    </div>
+    <div class="form-field">
+      <label>
+        Password
+        <input required formControlName="password" type="password" autocomplete="current-password" />
+      </label>
+      @if(password?.invalid && (password?.dirty || password?.touched)){ @if(password?.errors?.["required"]) {
+      <p class="form-field-error">Campo obligatorio</p>
+      } }
+    </div>
     <button app-button type="submit">Submit</button>
   </form>
 </section>

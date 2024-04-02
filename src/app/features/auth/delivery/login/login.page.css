@@ -1,5 +1,6 @@
 :host {
-  --input-focus-color: #005cbb;
+  --form-field-focus-color: #005cbb;
+  --form-field-error-color: #ba1a1a;
   --input-background-color: #e0e2ec;
 
   display: block;
@@ -29,17 +30,24 @@ form {
   flex-direction: column;
 }
 
-label {
-  width: 100%;
+.form-field {
   margin-bottom: var(--md);
 }
 
+label {
+  width: 100%;
+}
+
 label:focus-within {
-  color: var(--input-focus-color);
+  color: var(--form-field-focus-color);
+}
+
+label:has(input:focus-within:invalid) {
+  color: var(--form-field-error-color);
 }
 
 input {
-  margin-top: 4px;
+  margin: 4px 0;
   padding: 0 var(--sm);
   height: 40px;
   background-color: var(--input-background-color);
@@ -50,5 +58,14 @@ input {
 
 input:focus-visible {
   outline: none;
-  border-bottom: var(--input-focus-color) 1px solid;
+  border-bottom: var(--form-field-focus-color) 1px solid;
+}
+
+input:focus-visible:invalid {
+  border-bottom: var(--form-field-error-color) 1px solid;
+}
+
+.form-field-error {
+  font-size: 12px;
+  color: var(--form-field-error-color);
 }
