@@ -1,7 +1,7 @@
-import { AuthUser } from '../../app/features/auth/domain/auth-user'
+import { Credentials } from '../../app/features/auth/domain/credentials'
 
 export class AuthMother {
-  static admin(): AuthUser {
+  static admin(): Credentials {
     return {
       email: 'admin@admin.com',
       password: 'admin123',

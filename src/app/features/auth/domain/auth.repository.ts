@@ -1,5 +1,6 @@
-import { AuthUser } from './auth-user'
+import { User } from './user'
+import { Credentials } from './credentials'
 
 export interface AuthRepository {
-  login(authUser: AuthUser): Promise<unknown>
+  login(credentials: Credentials): Promise<User>
 }

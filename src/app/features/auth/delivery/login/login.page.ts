@@ -2,7 +2,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 import { ButtonComponent } from '../../../../core/components/button/button.component'
 import { FormModel } from '../../../../core/models/form-model'
-import { AuthService } from '../../application/auth.service'
+import { LoginCmd } from '../../application/login.cmd'
+import { Router } from '@angular/router'
+import { UseCaseService } from '../../../../core/use-case/use-case.service'
 
 type LoginFormModel = FormModel<{ email: string; password: string }>
 
@@ -17,7 +19,8 @@ type LoginFormModel = FormModel<{ email: string; password: string }>
 export class LoginPage {
   constructor(
     private readonly formBuilder: NonNullableFormBuilder,
-    private readonly authService: AuthService,
+    private readonly useCaseService: UseCaseService,
+    private readonly router: Router,
   ) {}
 
   form = this.formBuilder.group<LoginFormModel>({
@@ -25,10 +28,11 @@ export class LoginPage {
     password: this.formBuilder.control('', [Validators.required, Validators.minLength(6)]),
   })
 
-  onSubmit() {
+  async onSubmit() {
     if (!this.form.valid) return
     const email = this.form.get('email')?.value ?? ''
     const password = this.form.get('password')?.value ?? ''
-    this.authService.login(email, password)
+    await this.useCaseService.execute(LoginCmd, { email, password })
+    await this.router.navigateByUrl('/habits')
   }
 }
