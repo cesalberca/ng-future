@@ -29,6 +29,16 @@ export class LoginPage {
     if (!this.form.valid) return
     const email = this.form.get('email')?.value ?? ''
     const password = this.form.get('password')?.value ?? ''
-    this.authService.login(email, password)
+    this.authService
+      .login(email, password)
+      .then(res => {
+        console.log(res)
+        //TODO: Redirigir a /habits
+      })
+      .catch(e => {
+        console.error(e)
+        console.log(e.error)
+        //TODO: Mostrar error en el formulario
+      })
   }
 }
