@@ -9,7 +9,7 @@ export class AuthService {
   constructor(@Inject(InjectionTokens.AUTH_REPOSITORY) private readonly authRepository: AuthRepository) {}
 
   login(email: string, password: string) {
-    return this.authRepository.login(email, password)
+    return this.authRepository.login({ email, password })
   }
 
   register(email: string, password: string) {

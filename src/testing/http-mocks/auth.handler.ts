@@ -1,10 +1,11 @@
 import { http, HttpResponse } from 'msw'
 import { api } from './api'
 import { AuthMother } from '../mothers/auth.mother'
+import { AuthUser } from '../../app/features/auth/domain/auth-user'
 
 export const authHandler = [
-  http.post(api('auth/login'), async ({ request }) => {
-    const data = (await request.json()) as { email: string; password: string }
+  http.post<never, AuthUser>(api('auth/login'), async ({ request }) => {
+    const data = await request.json()
     const email = data.email
     const password = data.password
     if (!email || !password) {
