@@ -26,11 +26,6 @@ export class LoginPage {
   })
 
   onSubmit() {
-    console.log({ valid: this.form.valid })
-    console.log(this.form.value)
-    console.log(this.form.get('email')?.errors)
-    console.log(this.form.get('password')?.errors)
-
     if (!this.form.valid) return
     const email = this.form.get('email')?.value ?? ''
     const password = this.form.get('password')?.value ?? ''
