@@ -1,0 +1,6 @@
+<h3 class="title">Rachas</h3>
+<div class="streaks">
+  @for (streak of streaks(); track streak.habit.id) {
+    <p>{{ streak.habit.name }} - {{ streak.count }}</p>
+  }
+</div>

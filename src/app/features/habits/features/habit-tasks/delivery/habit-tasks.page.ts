@@ -10,11 +10,12 @@ import { DateTime } from '../../../../../core/datetime/datetime'
 import { Habit } from '../../../../../core/models/habit'
 import { UpdateHabitTasksCmd } from '../application/update-habit-tasks.cmd'
 import { UpdateHabitTasks } from '../../../../../core/models/update-habit-tasks'
+import { StreaksComponent } from '../../streaks/delivery/streak/streaks.component'
 
 @Component({
   selector: 'app-habit-tasks',
   standalone: true,
-  imports: [HabitComponent, RouterLink, HabitTasksDatePipe, ButtonComponent],
+  imports: [HabitComponent, RouterLink, HabitTasksDatePipe, ButtonComponent, StreaksComponent],
   templateUrl: './habit-tasks.page.html',
   styleUrl: './habit-tasks.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

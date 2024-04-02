@@ -1,0 +1,10 @@
+.title {
+  margin: 24px 0;
+  font-size: large;
+}
+
+.streaks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
