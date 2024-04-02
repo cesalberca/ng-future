@@ -1,10 +1,7 @@
 import { http, HttpResponse } from 'msw'
 import { api } from './api'
+import { AuthMother } from '../mothers/auth.mother'
 
-const authAdminUser = {
-  email: 'admin@admin.com',
-  password: 'admin123',
-}
 export const authHandler = [
   http.post(api('auth/login'), async ({ request }) => {
     const data = (await request.json()) as { email: string; password: string }
@@ -14,6 +11,7 @@ export const authHandler = [
       return new HttpResponse('Missing email or password', { status: 400 })
     }
 
+    const authAdminUser = AuthMother.admin()
     if (email !== authAdminUser.email || password !== authAdminUser.password) {
       return new HttpResponse('Invalid Email or Password', { status: 401 })
     }
