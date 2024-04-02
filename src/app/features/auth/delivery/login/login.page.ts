@@ -3,6 +3,7 @@ import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angula
 import { ButtonComponent } from '../../../../core/components/button/button.component'
 import { FormModel } from '../../../../core/models/form-model'
 import { AuthService } from '../../application/auth.service'
+import { Router } from '@angular/router'
 
 type LoginFormModel = FormModel<{ email: string; password: string }>
 
@@ -18,6 +19,7 @@ export class LoginPage {
   constructor(
     private readonly formBuilder: NonNullableFormBuilder,
     private readonly authService: AuthService,
+    private readonly router: Router,
   ) {}
 
   form = this.formBuilder.group<LoginFormModel>({
@@ -33,7 +35,7 @@ export class LoginPage {
       .login(email, password)
       .then(res => {
         console.log(res)
-        //TODO: Redirigir a /habits
+        this.router.navigateByUrl('/habits')
       })
       .catch(e => {
         console.error(e)
