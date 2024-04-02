@@ -3,6 +3,8 @@ import { Habit } from '../../../../../core/models/habit'
 import { Id } from '../../../../../core/models/id'
 import { HabitTask } from '../../habit-tasks/domain/habit-task'
 
+type StreaksMap = { [key: Id]: { habit: Habit; count: number; isStreak: boolean } }
+
 @Injectable({
   providedIn: 'root',
 })
@@ -10,16 +12,13 @@ export class StreaksService {
   constructor() {}
 
   private createStreaksMap(habits: Habit[]) {
-    const streaksMap: { [key: Id]: { habit: Habit; count: number; isStreak: boolean } } = Object.fromEntries(
+    const streaksMap: StreaksMap = Object.fromEntries(
       habits.map(habit => [habit.id, { habit, count: 0, isStreak: true }]),
     )
     return streaksMap
   }
 
-  calculateStreaks(habitTasks: HabitTask[]) {
-    const habits = habitTasks[0]?.tasks.map(({ habit }) => habit) || []
-    const streaksMap = this.createStreaksMap(habits)
-
+  private composeStreaksMap(streaksMap: StreaksMap, habitTasks: HabitTask[]) {
     habitTasks.forEach(habitTask => {
       habitTask.tasks.forEach(task => {
         if (task.done && streaksMap[task.habit.id].isStreak) {
@@ -30,11 +29,21 @@ export class StreaksService {
         }
       })
     })
+    return streaksMap
+  }
 
+  private getStreaksFromStreaksMap(streaksMap: StreaksMap) {
     const streaks = Object.keys(streaksMap).map(streak => ({
       habit: streaksMap[streak].habit,
       count: streaksMap[streak].count,
     }))
+    return streaks
+  }
+
+  calculateStreaks(habitTasks: HabitTask[]) {
+    const habits: Habit[] = habitTasks[0]?.tasks.map(({ habit }) => habit) || []
+    const streaksMap = this.composeStreaksMap(this.createStreaksMap(habits), habitTasks)
+    const streaks = this.getStreaksFromStreaksMap(streaksMap)
     return streaks
   }
 }
