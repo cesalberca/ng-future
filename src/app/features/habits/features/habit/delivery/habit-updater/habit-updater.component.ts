@@ -3,7 +3,7 @@ import { Id } from '../../../../../../core/models/id'
 import { RouterLink } from '@angular/router'
 import { ButtonComponent } from '../../../../../../core/components/button/button.component'
 import { ModalService } from '../../../../../../core/components/modal/modal.service'
-import { UpdateHabitComponent } from '../../../update-habit/delivery/update-habit/update-habit.page'
+import { UpdateHabitComponent } from '../../../update-habit/delivery/update-habit/update-habit.component'
 
 @Component({
   selector: 'app-habit-updater',
@@ -14,9 +14,9 @@ import { UpdateHabitComponent } from '../../../update-habit/delivery/update-habi
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HabitUpdaterComponent {
-  constructor(private modalService: ModalService) {}
   habitId = input.required<Id>()
-  update = () => {
+  constructor(private readonly modalService: ModalService) {}
+  update() {
     this.modalService.open<Id>(UpdateHabitComponent, { data: this.habitId(), size: 'md' })
   }
 }

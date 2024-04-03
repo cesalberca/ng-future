@@ -9,7 +9,7 @@ import { UpdateHabitCmd } from '../../application/update-habit.cmd'
 import { Router } from '@angular/router'
 import { ButtonComponent } from '../../../../../../core/components/button/button.component'
 import { Id } from '../../../../../../core/models/id'
-import { EmbedableDialog } from '../../../../../../core/components/modal/embebable-modal'
+import { EmbedableModal } from '../../../../../../core/components/modal/embebable-modal'
 
 type Model = FormModel<CreateHabitForm>
 
@@ -17,12 +17,10 @@ type Model = FormModel<CreateHabitForm>
   selector: 'app-update-habit-component',
   standalone: true,
   imports: [ReactiveFormsModule, ButtonComponent],
-  templateUrl: './update-habit.page.html',
-  styleUrl: './update-habit.page.css',
+  templateUrl: './update-habit.component.html',
+  styleUrl: './update-habit.component.css',
 })
-export class UpdateHabitComponent implements EmbedableDialog<Id> {
-  data = ''
-  close = () => {}
+export class UpdateHabitComponent extends EmbedableModal<Id> {
   habit = signal<Habit | undefined>(undefined)
   form = this.formBuilder.group<Model>({
     name: this.formBuilder.control('', [Validators.required, Validators.min(1)]),
@@ -38,6 +36,7 @@ export class UpdateHabitComponent implements EmbedableDialog<Id> {
     private readonly useCaseService: UseCaseService,
     private readonly router: Router,
   ) {
+    super()
     effect(async () => {
       if (this.data) {
         const habit = await this.habitsService.getHabit(this.data)

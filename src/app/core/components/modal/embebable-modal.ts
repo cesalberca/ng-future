@@ -1,4 +1,4 @@
-export interface EmbedableDialog<T> {
-  data: T
-  close: () => void
+export class EmbedableModal<T> {
+  data?: T | undefined = undefined
+  close = () => {}
 }

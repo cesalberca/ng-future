@@ -1,7 +1,7 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog'
 import { ComponentType } from '@angular/cdk/portal'
-import { Component, EventEmitter, Inject, Output, TemplateRef, ViewChild, ViewContainerRef, input } from '@angular/core'
-import { EmbedableDialog } from './embebable-modal'
+import { Component, Inject, ViewChild, ViewContainerRef } from '@angular/core'
+import { EmbedableModal } from './embebable-modal'
 import { ModalConfig } from './modal-config'
 
 @Component({
@@ -13,10 +13,6 @@ import { ModalConfig } from './modal-config'
 export class ModalComponent<T> {
   @ViewChild('dynamicContent', { read: ViewContainerRef, static: true })
   dynamicContent!: ViewContainerRef
-
-  projectedContent = input.required<TemplateRef<unknown>>()
-  @Output() closeEvent = new EventEmitter()
-  @Output() submitEvent = new EventEmitter()
 
   constructor(
     @Inject(DIALOG_DATA) public data: ModalConfig<T>,
@@ -34,7 +30,7 @@ export class ModalComponent<T> {
 
   classes = `modal ${this.data?.size}`
 
-  loadComponent(component: ComponentType<EmbedableDialog<T>>) {
+  loadComponent(component: ComponentType<EmbedableModal<T>>) {
     const dynamicComponent = this.viewContainerRef.createComponent(component)
     dynamicComponent.instance.data = this.data.data
     dynamicComponent.instance.close = () => this.close()
