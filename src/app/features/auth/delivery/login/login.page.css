@@ -1,8 +1,4 @@
 :host {
-  --form-field-focus-color: #005cbb;
-  --form-field-error-color: #ba1a1a;
-  --input-background-color: #e0e2ec;
-
   display: block;
 }
 
@@ -28,44 +24,4 @@ h1 {
 form {
   display: flex;
   flex-direction: column;
-}
-
-.form-field {
-  margin-bottom: var(--md);
-}
-
-label {
-  width: 100%;
-}
-
-label:focus-within {
-  color: var(--form-field-focus-color);
-}
-
-label:has(input[data-touched='true']:invalid) {
-  color: var(--form-field-error-color);
-}
-
-input {
-  margin: 4px 0;
-  padding: 0 var(--sm);
-  height: 40px;
-  background-color: var(--input-background-color);
-  border-top-left-radius: var(--xxs);
-  border-top-right-radius: var(--xxs);
-  font-size: 16px;
-}
-
-input:focus-visible {
-  outline: none;
-  border-bottom: var(--form-field-focus-color) 1px solid;
-}
-
-input[data-touched='true']:focus-visible:invalid {
-  border-bottom: var(--form-field-error-color) 1px solid;
-}
-
-.form-field-error {
-  font-size: 12px;
-  color: var(--form-field-error-color);
 }

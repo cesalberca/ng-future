@@ -3,10 +3,11 @@
     <h1>Login</h1>
   </header>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="form-field">
-      <label>
-        Email
+    <app-form-field>
+      <label app-form-field-label
+        >Email
         <input
+          app-form-field-input
           required
           formControlName="email"
           type="email"
@@ -14,16 +15,17 @@
           [attr.data-touched]="email?.touched || email?.dirty"
         />
       </label>
-      @if(email?.invalid && (email?.dirty || email?.touched)){ @if(email?.errors?.["required"]) {
-      <p class="form-field-error">Campo obligatorio</p>
-      } @if(email?.errors?.["email"]) {
-      <p class="form-field-error">Dirección de correo electrónico no válida</p>
-      } }
-    </div>
-    <div class="form-field">
-      <label>
-        Password
+      @if(hasEmailError() && email?.errors?.["required"]) {
+      <p app-form-field-error>Campo obligatorio</p>
+      } @if(hasEmailError() && email?.errors?.["email"]) {
+      <p app-form-field-error>Dirección de correo electrónico no válida</p>
+      }
+    </app-form-field>
+    <app-form-field>
+      <label app-form-field-label
+        >Password
         <input
+          app-form-field-input
           required
           formControlName="password"
           type="password"
@@ -31,10 +33,10 @@
           [attr.data-touched]="password?.touched || password?.dirty"
         />
       </label>
-      @if(password?.invalid && (password?.dirty || password?.touched)){ @if(password?.errors?.["required"]) {
-      <p class="form-field-error">Campo obligatorio</p>
-      } }
-    </div>
+      @if(hasPasswordError() && password?.errors?.["required"]) {
+      <p app-form-field-error>Campo obligatorio</p>
+      }
+    </app-form-field>
     <button app-button type="submit">Submit</button>
   </form>
 </section>

@@ -5,13 +5,14 @@ import { FormModel } from '../../../../core/models/form-model'
 import { LoginCmd } from '../../application/login.cmd'
 import { Router } from '@angular/router'
 import { UseCaseService } from '../../../../core/use-case/use-case.service'
+import { FormFieldComponent } from '../../../../core/components/form-field/form-field.component'
 
 type LoginFormModel = FormModel<{ email: string; password: string }>
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, ButtonComponent],
+  imports: [ReactiveFormsModule, ButtonComponent, FormFieldComponent],
   templateUrl: './login.page.html',
   styleUrl: './login.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,6 +35,14 @@ export class LoginPage {
 
   get password() {
     return this.form.get('password')
+  }
+
+  hasEmailError() {
+    return this.email?.invalid && (this.email?.dirty || this.email?.touched)
+  }
+
+  hasPasswordError() {
+    return this.password?.invalid && (this.password?.dirty || this.password?.touched)
   }
 
   async onSubmit() {
