@@ -17,6 +17,6 @@ export class HabitUpdaterComponent {
   constructor(private modalService: ModalService) {}
   habitId = input.required<Id>()
   update = () => {
-    this.modalService.open<Id>(UpdateHabitComponent, this.habitId())
+    this.modalService.open<Id>(UpdateHabitComponent, { data: this.habitId(), size: 'md' })
   }
 }

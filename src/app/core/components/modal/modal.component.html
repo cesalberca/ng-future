@@ -1,5 +1,11 @@
 <div class="modal-wrapper" (click)="close()" (keypress)="close()" tabindex="0" role="button">
-  <div class="modal" (click)="stopPropagation($event)" (keypress)="stopPropagation($event)" tabindex="0" role="button">
+  <div
+    [class]="classes"
+    (click)="stopPropagation($event)"
+    (keypress)="stopPropagation($event)"
+    tabindex="0"
+    role="button"
+  >
     <button class="close-button" (click)="close()">❌</button>
     <ng-container #dynamicContent></ng-container>
   </div>

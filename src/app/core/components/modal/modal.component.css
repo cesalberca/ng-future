@@ -16,12 +16,22 @@
 
 .modal {
   padding: 24px;
-  height: 400px;
-  width: 400px;
+  height: 50vh;
+  width: 50vw;
   display: flex;
   flex-direction: column;
   background: white;
   border-radius: 4px;
+}
+
+.modal.sm {
+  height: 30vh;
+  width: 30vw;
+}
+
+.modal.lg {
+  height: 80vh;
+  width: 80vw;
 }
 
 .close-button {
