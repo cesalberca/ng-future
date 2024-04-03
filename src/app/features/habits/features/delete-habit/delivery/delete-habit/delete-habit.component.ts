@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output, input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core'
 import { Id } from '../../../../../../core/models/id'
 import { DeleteHabitCmd } from '../../application/delete-habit.cmd'
 import { Habit } from '../../../../../../core/models/habit'
@@ -16,8 +16,7 @@ import { ButtonComponent } from '../../../../../../core/components/button/button
 export class DeleteHabitComponent {
   habit = input.required<Habit>()
 
-  @Output()
-  deleted = new EventEmitter<Id>()
+  deleted = output<Id>()
 
   constructor(private readonly useCaseService: UseCaseService) {}
 
