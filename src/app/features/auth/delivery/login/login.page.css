@@ -1,7 +1,4 @@
 :host {
-  --input-focus-color: #005cbb;
-  --input-background-color: #e0e2ec;
-
   display: block;
 }
 
@@ -27,28 +24,4 @@ h1 {
 form {
   display: flex;
   flex-direction: column;
-}
-
-label {
-  width: 100%;
-  margin-bottom: var(--md);
-}
-
-label:focus-within {
-  color: var(--input-focus-color);
-}
-
-input {
-  margin-top: 4px;
-  padding: 0 var(--sm);
-  height: 40px;
-  background-color: var(--input-background-color);
-  border-top-left-radius: var(--xxs);
-  border-top-right-radius: var(--xxs);
-  font-size: 16px;
-}
-
-input:focus-visible {
-  outline: none;
-  border-bottom: var(--input-focus-color) 1px solid;
 }
