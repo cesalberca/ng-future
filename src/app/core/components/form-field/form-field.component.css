@@ -1,0 +1,40 @@
+.form-field {
+  display: block;
+  margin-bottom: var(--md);
+}
+
+.form-field label {
+  width: 100%;
+}
+
+.form-field label:focus-within {
+  color: var(--form-field-focus-color);
+}
+
+.form-field label:has(input[data-touched='true']:invalid) {
+  color: var(--form-field-error-color);
+}
+
+.form-field input {
+  margin: 4px 0;
+  padding: 0 var(--sm);
+  height: 40px;
+  background-color: var(--input-background-color);
+  border-top-left-radius: var(--xxs);
+  border-top-right-radius: var(--xxs);
+  font-size: 16px;
+}
+
+.form-field input:focus-visible {
+  outline: none;
+  border-bottom: var(--form-field-focus-color) 1px solid;
+}
+
+.form-field input[data-touched='true']:focus-visible:invalid {
+  border-bottom: var(--form-field-error-color) 1px solid;
+}
+
+.form-field .form-field-error {
+  font-size: 12px;
+  color: var(--form-field-error-color);
+}
