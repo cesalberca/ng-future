@@ -3,14 +3,22 @@
     <h1>Login</h1>
   </header>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <label>
-      Email
-      <input formControlName="email" type="email" autocomplete="username" />
-    </label>
-    <label>
-      Password
-      <input formControlName="password" type="password" autocomplete="current-password" />
-    </label>
+    <app-form-field-input
+      label="Email"
+      type="email"
+      required
+      autocomplete="username"
+      [control]="form.controls.email"
+      [error]="emailErrorMessage"
+    ></app-form-field-input>
+    <app-form-field-input
+      label="Password"
+      type="password"
+      required
+      autocomplete="current-password"
+      [control]="form.controls.password"
+      [error]="passwordErrorMessage"
+    ></app-form-field-input>
     <button app-button type="submit">Submit</button>
   </form>
 </section>

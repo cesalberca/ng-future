@@ -1,6 +1,5 @@
-import { Component, input, signal, effect } from '@angular/core'
+import { Component, signal, effect } from '@angular/core'
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
-import { Id } from '../../../../../../core/models/id'
 import { Habit } from '../../../../../../core/models/habit'
 import { HabitsService } from '../../../../application/habits.service'
 import { FormModel } from '../../../../../../core/models/form-model'
@@ -9,20 +8,22 @@ import { UseCaseService } from '../../../../../../core/use-case/use-case.service
 import { UpdateHabitCmd } from '../../application/update-habit.cmd'
 import { Router } from '@angular/router'
 import { ButtonComponent } from '../../../../../../core/components/button/button.component'
+import { Id } from '../../../../../../core/models/id'
+import { EmbedableDialog } from '../../../../../../core/components/modal/embebable-modal'
 
 type Model = FormModel<CreateHabitForm>
 
 @Component({
-  selector: 'app-update-habit-page',
+  selector: 'app-update-habit-component',
   standalone: true,
   imports: [ReactiveFormsModule, ButtonComponent],
   templateUrl: './update-habit.page.html',
   styleUrl: './update-habit.page.css',
 })
-export class UpdateHabitPage {
-  id = input.required<Id>()
+export class UpdateHabitComponent implements EmbedableDialog<Id> {
+  data = ''
+  close = () => {}
   habit = signal<Habit | undefined>(undefined)
-
   form = this.formBuilder.group<Model>({
     name: this.formBuilder.control('', [Validators.required, Validators.min(1)]),
   })
@@ -38,9 +39,11 @@ export class UpdateHabitPage {
     private readonly router: Router,
   ) {
     effect(async () => {
-      const habit = await this.habitsService.getHabit(this.id())
-      this.habit.set(habit)
-      this.form.setValue({ name: habit!.name })
+      if (this.data) {
+        const habit = await this.habitsService.getHabit(this.data)
+        this.habit.set(habit)
+        this.form.setValue({ name: habit!.name })
+      }
     })
   }
 
@@ -55,5 +58,6 @@ export class UpdateHabitPage {
       },
     )
     this.router.navigate(['..'])
+    this.close()
   }
 }

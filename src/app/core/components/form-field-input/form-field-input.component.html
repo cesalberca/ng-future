@@ -1,0 +1,13 @@
+<label>
+  {{ label() }}
+  <input
+    [formControl]="control()"
+    [required]="required()"
+    [type]="type()"
+    [autocomplete]="autocomplete()"
+    [attr.data-touched]="control().touched || control().dirty"
+  />
+</label>
+@if (error()) {
+  <p class="form-field-error">{{ error() }}</p>
+}
