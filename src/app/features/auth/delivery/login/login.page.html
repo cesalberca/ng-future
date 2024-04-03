@@ -3,40 +3,22 @@
     <h1>Login</h1>
   </header>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <app-form-field>
-      <label app-form-field-label
-        >Email
-        <input
-          app-form-field-input
-          required
-          formControlName="email"
-          type="email"
-          autocomplete="username"
-          [attr.data-touched]="email?.touched || email?.dirty"
-        />
-      </label>
-      @if(hasEmailError() && email?.errors?.["required"]) {
-      <p app-form-field-error>Campo obligatorio</p>
-      } @if(hasEmailError() && email?.errors?.["email"]) {
-      <p app-form-field-error>Dirección de correo electrónico no válida</p>
-      }
-    </app-form-field>
-    <app-form-field>
-      <label app-form-field-label
-        >Password
-        <input
-          app-form-field-input
-          required
-          formControlName="password"
-          type="password"
-          autocomplete="current-password"
-          [attr.data-touched]="password?.touched || password?.dirty"
-        />
-      </label>
-      @if(hasPasswordError() && password?.errors?.["required"]) {
-      <p app-form-field-error>Campo obligatorio</p>
-      }
-    </app-form-field>
+    <app-form-field-input
+      label="Email"
+      type="email"
+      required
+      autocomplete="username"
+      [control]="form.controls.email"
+      [error]="emailErrorMessage"
+    ></app-form-field-input>
+    <app-form-field-input
+      label="Password"
+      type="password"
+      required
+      autocomplete="current-password"
+      [control]="form.controls.password"
+      [error]="passwordErrorMessage"
+    ></app-form-field-input>
     <button app-button type="submit">Submit</button>
   </form>
 </section>

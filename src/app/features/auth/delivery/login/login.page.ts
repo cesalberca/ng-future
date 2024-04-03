@@ -5,14 +5,14 @@ import { FormModel } from '../../../../core/models/form-model'
 import { LoginCmd } from '../../application/login.cmd'
 import { Router } from '@angular/router'
 import { UseCaseService } from '../../../../core/use-case/use-case.service'
-import { FormFieldComponent } from '../../../../core/components/form-field/form-field.component'
+import { FormFieldInputComponent } from '../../../../core/components/form-field-input/form-field-input.component'
 
 type LoginFormModel = FormModel<{ email: string; password: string }>
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, ButtonComponent, FormFieldComponent],
+  imports: [ReactiveFormsModule, ButtonComponent, FormFieldInputComponent],
   templateUrl: './login.page.html',
   styleUrl: './login.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,12 +37,16 @@ export class LoginPage {
     return this.form.get('password')
   }
 
-  hasEmailError() {
-    return this.email?.invalid && (this.email?.dirty || this.email?.touched)
+  get passwordErrorMessage() {
+    const hasPasswordError = this.password?.invalid && (this.password?.dirty || this.password?.touched)
+    return hasPasswordError && this.password?.errors?.['required'] ? 'Campo obligatorio' : undefined
   }
 
-  hasPasswordError() {
-    return this.password?.invalid && (this.password?.dirty || this.password?.touched)
+  get emailErrorMessage() {
+    const hasEmailError = this.email?.invalid && (this.email?.dirty || this.email?.touched)
+    if (hasEmailError && this.email.errors?.['required']) return 'Campo obligatorio'
+    if (hasEmailError && this.email.errors?.['email']) return 'Dirección de correo electrónico no válida'
+    return undefined
   }
 
   async onSubmit() {
