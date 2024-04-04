@@ -39,13 +39,13 @@ export class LoginPage {
 
   get passwordErrorMessage() {
     const hasPasswordError = this.password?.invalid && (this.password?.dirty || this.password?.touched)
-    return hasPasswordError && this.password?.errors?.['required'] ? 'Campo obligatorio' : undefined
+    return hasPasswordError && this.password?.errors?.['required'] ? 'Required field' : undefined
   }
 
   get emailErrorMessage() {
     const hasEmailError = this.email?.invalid && (this.email?.dirty || this.email?.touched)
-    if (hasEmailError && this.email.errors?.['required']) return 'Campo obligatorio'
-    if (hasEmailError && this.email.errors?.['email']) return 'Dirección de correo electrónico no válida'
+    if (hasEmailError && this.email.errors?.['required']) return 'Required field'
+    if (hasEmailError && this.email.errors?.['email']) return 'Invalid e-mail address'
     return undefined
   }
 
