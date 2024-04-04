@@ -10,25 +10,22 @@ import { Router } from '@angular/router'
 import { ButtonComponent } from '../../../../../../core/components/button/button.component'
 import { Id } from '../../../../../../core/models/id'
 import { EmbedableModal } from '../../../../../../core/components/modal/embebable-modal'
+import { FormFieldInputComponent } from '../../../../../../core/components/form-field-input/form-field-input.component'
 
 type Model = FormModel<CreateHabitForm>
 
 @Component({
   selector: 'app-update-habit-component',
   standalone: true,
-  imports: [ReactiveFormsModule, ButtonComponent],
+  imports: [ReactiveFormsModule, ButtonComponent, FormFieldInputComponent],
   templateUrl: './update-habit.component.html',
   styleUrl: './update-habit.component.css',
 })
 export class UpdateHabitComponent extends EmbedableModal<Id> {
   habit = signal<Habit | undefined>(undefined)
   form = this.formBuilder.group<Model>({
-    name: this.formBuilder.control('', [Validators.required, Validators.min(1)]),
+    name: this.formBuilder.control('', [Validators.required, Validators.minLength(3)]),
   })
-
-  get name() {
-    return this.form.get('name')!
-  }
 
   constructor(
     private readonly formBuilder: NonNullableFormBuilder,
@@ -44,6 +41,17 @@ export class UpdateHabitComponent extends EmbedableModal<Id> {
         this.form.setValue({ name: habit!.name })
       }
     })
+  }
+
+  get name() {
+    return this.form.get('name')!
+  }
+
+  get nameErrorMessage() {
+    const hasEmailError = this.name?.invalid && (this.name?.dirty || this.name?.touched)
+    if (hasEmailError && this.name.errors?.['required']) return 'Required field'
+    if (hasEmailError && this.name.errors?.['minlength']) return 'Name must be at least 3 characters long'
+    return undefined
   }
 
   async update() {
