@@ -3,7 +3,9 @@
 } @else {
 <div class="habits">
   @for (habit of habits(); track habit.id) {
-  <app-habit [habit]="habit"></app-habit>
+  <a [routerLink]="'/habits/' + habit.id">
+    <app-habit [habit]="habit"></app-habit>
+  </a>
   }
 </div>
 }

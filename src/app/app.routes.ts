@@ -1,9 +1,29 @@
 import { Routes } from '@angular/router'
-import { HabitsPage } from './habits/habits.page'
+import { HabitsPage } from './features/habits/habits/habits.page'
+import { HabitPage } from './features/habits/detail/habit.page'
+import { NotFoundPage } from './core/components/not-found/not-found-page.component'
 
 export const routes: Routes = [
   {
+    path: 'habits',
+    children: [
+      {
+        path: '',
+        component: HabitsPage,
+      },
+      {
+        path: ':id',
+        component: HabitPage,
+      },
+    ],
+  },
+  {
     path: '',
-    component: HabitsPage,
+    redirectTo: 'habits',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    component: NotFoundPage,
   },
 ]
