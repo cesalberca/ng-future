@@ -1,14 +1,10 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <label>
-    Name
-    <input formControlName="name"
-  /></label>
-  @if (name.invalid && (name.dirty || name.touched)) {
-  <!-- prettier-ignore -->
-  @if (name.errors?.['required']) {
-  <div>Name is required.</div>
-  } @if (name.errors?.['minlength']) {
-  <div>Name must be at least 3 characters long.</div>
-  } }
+  <app-form-field-input
+    label="Name"
+    type="text"
+    required
+    [control]="form.controls.name"
+    [error]="nameErrorMessage"
+  ></app-form-field-input>
   <button app-button type="submit">Submit</button>
 </form>
