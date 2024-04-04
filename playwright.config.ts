@@ -7,6 +7,7 @@ export default defineConfig({
   retries: process.env['CI'] ? 2 : 0,
   workers: process.env['CI'] ? 1 : undefined,
   reporter: process.env['CI'] ? 'dot' : [['html'], ['json']],
+  testMatch: ['**/*.e2e.ts'],
   use: {
     baseURL: 'http://localhost:4200',
     trace: 'on-first-retry',
