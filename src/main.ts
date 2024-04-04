@@ -4,12 +4,12 @@ import { AppComponent } from './app/app.component'
 import { isDevMode } from '@angular/core'
 
 async function enableMocking() {
-  if (!isDevMode()) {
-    return
-  }
+  if (!isDevMode()) return
 
   const { browser } = await import('./tests/http-mocks/browser.mocks')
-  return browser.start()
+  return browser.start({
+    onUnhandledRequest: 'bypass',
+  })
 }
 
 enableMocking().then(() => {
