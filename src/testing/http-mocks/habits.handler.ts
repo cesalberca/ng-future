@@ -1,11 +1,11 @@
 import { http, HttpResponse } from 'msw'
-import { Habit } from '../../app/core/models/habit'
+import { Habit } from '../../app/features/habits/domain/habit'
 import { api } from './api'
-import { CreateHabit } from '../../app/core/models/create-habit'
+import { CreateHabit } from '../../app/features/habits/features/create-habit/domain/create-habit'
 import { LiveStorage } from '@mswjs/storage'
 import { Id } from '../../app/core/models/id'
 import { HabitMother } from '../mothers/habit.mother'
-import { UpdateHabit } from '../../app/core/models/update-habit'
+import { UpdateHabit } from '../../app/features/habits/features/update-habit/domain/update-habit'
 import { habitTasks } from './habit-tasks.handler'
 
 export const habits = new LiveStorage<Habit[]>('habits', HabitMother.habits())
@@ -27,7 +27,6 @@ export const habitsHandler = [
   http.put<never, UpdateHabit, never>(api('habits/:id'), async ({ request }) => {
     const data = await request.json()
     habits.update(x => x.map(x => (x.id === data.id ? { ...x, ...data } : x)))
-    // TODO: change current update with a http put
     habitTasks.update(x =>
       x.map(({ date, tasks }) => ({
         date,
@@ -41,7 +40,6 @@ export const habitsHandler = [
   http.post<CreateHabit, never, Habit>(api('habits'), async ({ request }) => {
     const data = await request.json()
     habits.update(x => [...x, data])
-    // TODO: change current update with a http post
     habitTasks.update(x => x.map(({ date, tasks }) => ({ date, tasks: [...tasks, { habit: data, done: false }] })))
     return HttpResponse.json(data, {
       status: 200,

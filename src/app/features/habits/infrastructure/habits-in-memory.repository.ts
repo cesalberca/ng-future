@@ -1,9 +1,9 @@
 import { Injectable, signal } from '@angular/core'
-import { CreateHabit } from '../../../core/models/create-habit'
-import { Habit } from '../../../core/models/habit'
+import { CreateHabit } from '../features/create-habit/domain/create-habit'
+import { Habit } from '../domain/habit'
 import { HabitsRepository } from '../domain/habits.repository'
 import { Id } from '../../../core/models/id'
-import { UpdateHabit } from '../../../core/models/update-habit'
+import { UpdateHabit } from '../features/update-habit/domain/update-habit'
 
 import { HabitTask } from '../features/habit-tasks/domain/habit-task'
 import { HabitMother } from '../../../../testing/mothers/habit.mother'

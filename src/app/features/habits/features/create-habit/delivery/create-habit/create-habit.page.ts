@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
-import { HabitsService } from '../../../../application/habits.service'
 import { FormModel } from '../../../../../../core/models/form-model'
-import { CreateHabitFormModel as CreateHabitForm } from '../../../../../../core/models/create-habit-form-model'
+import { CreateHabitFormModel as CreateHabitForm } from '../../domain/create-habit-form-model'
 import { Router } from '@angular/router'
 import { ButtonComponent } from '../../../../../../core/components/button/button.component'
 import { FormFieldInputComponent } from '../../../../../../core/components/form-field-input/form-field-input.component'
+import { UseCaseService } from '../../../../../../core/use-case/use-case.service'
+import { CreateHabitCmd } from '../../application/create-habit.cmd'
 
 type Model = FormModel<CreateHabitForm>
 
@@ -24,7 +25,7 @@ export class CreateHabitPage {
 
   constructor(
     private readonly formBuilder: NonNullableFormBuilder,
-    private readonly habitsService: HabitsService,
+    private readonly useCaseService: UseCaseService,
     private readonly router: Router,
   ) {}
 
@@ -40,9 +41,9 @@ export class CreateHabitPage {
   }
 
   async onSubmit() {
-    await this.habitsService.createHabit({
+    await this.useCaseService.execute(CreateHabitCmd, {
       name: this.name.value,
     })
-    this.router.navigate(['..'])
+    await this.router.navigate(['..'])
   }
 }

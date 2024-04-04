@@ -1,9 +1,8 @@
-import { Component, signal, effect } from '@angular/core'
+import { Component, effect, signal } from '@angular/core'
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
-import { Habit } from '../../../../../../core/models/habit'
-import { HabitsService } from '../../../../application/habits.service'
+import { Habit } from '../../../../domain/habit'
 import { FormModel } from '../../../../../../core/models/form-model'
-import { CreateHabitFormModel as CreateHabitForm } from '../../../../../../core/models/create-habit-form-model'
+import { CreateHabitFormModel as CreateHabitForm } from '../../../create-habit/domain/create-habit-form-model'
 import { UseCaseService } from '../../../../../../core/use-case/use-case.service'
 import { UpdateHabitCmd } from '../../application/update-habit.cmd'
 import { Router } from '@angular/router'
@@ -11,6 +10,7 @@ import { ButtonComponent } from '../../../../../../core/components/button/button
 import { Id } from '../../../../../../core/models/id'
 import { EmbedableModal } from '../../../../../../core/components/modal/embebable-modal'
 import { FormFieldInputComponent } from '../../../../../../core/components/form-field-input/form-field-input.component'
+import { GetHabitQry } from '../../../habit/application/get-habit.qry'
 
 type Model = FormModel<CreateHabitForm>
 
@@ -29,14 +29,13 @@ export class UpdateHabitComponent extends EmbedableModal<Id> {
 
   constructor(
     private readonly formBuilder: NonNullableFormBuilder,
-    private readonly habitsService: HabitsService,
     private readonly useCaseService: UseCaseService,
     private readonly router: Router,
   ) {
     super()
     effect(async () => {
       if (this.data) {
-        const habit = await this.habitsService.getHabit(this.data)
+        const habit = await this.useCaseService.execute(GetHabitQry, this.data)
         this.habit.set(habit)
         this.form.setValue({ name: habit!.name })
       }

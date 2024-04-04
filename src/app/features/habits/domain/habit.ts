@@ -1,4 +1,4 @@
-import { Id } from './id'
+import { Id } from '../../../core/models/id'
 
 export interface Habit {
   id: Id

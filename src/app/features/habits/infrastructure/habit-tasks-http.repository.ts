@@ -5,7 +5,7 @@ import { HabitTask } from '../features/habit-tasks/domain/habit-task'
 import { HabitTasksDto } from './habit-tasks.dto'
 import { HttpClient } from '@angular/common/http'
 import { DateTime } from '../../../core/datetime/datetime'
-import { UpdateHabitTasks } from '../../../core/models/update-habit-tasks'
+import { UpdateHabitTasks } from '../features/update-habit/domain/update-habit-tasks'
 
 @Injectable({
   providedIn: 'root',

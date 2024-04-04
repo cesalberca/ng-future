@@ -1,4 +1,4 @@
-import { Habit } from '../../app/core/models/habit'
+import { Habit } from '../../app/features/habits/domain/habit'
 import { IdMother } from './id.mother'
 import { HabitTask } from '../../app/features/habits/features/habit-tasks/domain/habit-task'
 import { DateTime } from '../../app/core/datetime/datetime'

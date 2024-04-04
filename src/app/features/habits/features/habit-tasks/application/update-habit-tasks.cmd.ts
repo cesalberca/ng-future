@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core'
 import { InjectionTokens } from '../../../../../core/tokens/injection-tokens'
 import { HabitTasksRepository } from '../../../domain/habit-tasks.repository'
 import { Command } from '../../../../../core/use-case/command'
-import { UpdateHabitTasks } from '../../../../../core/models/update-habit-tasks'
+import { UpdateHabitTasks } from '../../update-habit/domain/update-habit-tasks'
 import { HabitTask } from '../domain/habit-task'
 
 @Injectable({

@@ -1,6 +1,11 @@
 import { http, HttpResponse } from 'msw'
-import { User } from '../../app/core/models/user'
 import { api } from './api'
+import { Id } from '../../app/core/models/id'
+
+interface User {
+  id: Id
+  name: string
+}
 
 const user: User | null = null
 

@@ -7,9 +7,9 @@ import { GetHabitTasksQry } from '../application/get-habit-tasks.qry'
 import { HabitTasksDatePipe } from './habit-tasks-date.pipe'
 import { ButtonComponent } from '../../../../../core/components/button/button.component'
 import { DateTime } from '../../../../../core/datetime/datetime'
-import { Habit } from '../../../../../core/models/habit'
+import { Habit } from '../../../domain/habit'
 import { UpdateHabitTasksCmd } from '../application/update-habit-tasks.cmd'
-import { UpdateHabitTasks } from '../../../../../core/models/update-habit-tasks'
+import { UpdateHabitTasks } from '../../update-habit/domain/update-habit-tasks'
 import { StreaksComponent } from '../../streaks/delivery/streak/streaks.component'
 
 @Component({

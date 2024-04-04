@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core'
 import { Id } from '../../../../../../core/models/id'
-import { HabitsService } from '../../../../application/habits.service'
-import { Habit } from '../../../../../../core/models/habit'
+import { Habit } from '../../../../domain/habit'
 import { HabitComponent } from '../../../../delivery/habit/habit.component'
 import { DeleteHabitComponent } from '../../../delete-habit/delivery/delete-habit/delete-habit.component'
 import { HabitUpdaterComponent } from '../habit-updater/habit-updater.component'
 import { Router } from '@angular/router'
+import { UseCaseService } from '../../../../../../core/use-case/use-case.service'
+import { GetHabitQry } from '../../application/get-habit.qry'
 
 @Component({
   selector: 'app-habit-page',
@@ -20,11 +21,11 @@ export class HabitPage {
   habit = signal<Habit | undefined>(undefined)
 
   constructor(
-    private readonly habitsService: HabitsService,
     private readonly router: Router,
+    private readonly useCaseService: UseCaseService,
   ) {
     effect(async () => {
-      const habit = await this.habitsService.getHabit(this.id())
+      const habit = await this.useCaseService.execute(GetHabitQry, this.id())
       this.habit.set(habit)
     })
   }

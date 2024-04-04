@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Habit } from '../../../../../core/models/habit'
+import { Habit } from '../../../domain/habit'
 import { Id } from '../../../../../core/models/id'
 import { HabitTask } from '../../habit-tasks/domain/habit-task'
 

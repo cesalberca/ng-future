@@ -1,10 +1,7 @@
 import { DateTime } from '../../../../../core/datetime/datetime'
 import { Habit } from '../../../domain/habit'
 
-export interface HabitTask {
+export type UpdateHabitTasks = {
   date: DateTime
-  tasks: {
-    habit: Habit
-    done: boolean
-  }[]
+  updatedTask: { habit: Habit; done: boolean }
 }

@@ -1,16 +1,17 @@
+import { Query } from '../../../../../core/use-case/query'
 import { Inject, Injectable } from '@angular/core'
 import { InjectionTokens } from '../../../../../core/tokens/injection-tokens'
+import { Habit } from '../../../domain/habit'
 import { HabitsRepository } from '../../../domain/habits.repository'
-import { Command } from '../../../../../core/use-case/command'
-import { UpdateHabit } from '../domain/update-habit'
+import { Id } from '../../../../../core/models/id'
 
 @Injectable({
   providedIn: 'root',
 })
-export class UpdateHabitCmd implements Command<UpdateHabit> {
+export class GetHabitQry implements Query<Habit, Id> {
   constructor(@Inject(InjectionTokens.HABITS_REPOSITORY) private readonly habitsRepository: HabitsRepository) {}
 
-  handle(update: UpdateHabit) {
-    return this.habitsRepository.update(update)
+  handle(id: Id): Promise<Habit> {
+    return this.habitsRepository.findOne(id)
   }
 }

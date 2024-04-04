@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core'
 import { HabitsRepository } from '../domain/habits.repository'
-import { CreateHabit } from '../../../core/models/create-habit'
+import { CreateHabit } from '../features/create-habit/domain/create-habit'
 import { HttpClient } from '@angular/common/http'
 import { firstValueFrom } from 'rxjs'
 import { Id } from '../../../core/models/id'
-import { UpdateHabit } from '../../../core/models/update-habit'
+import { UpdateHabit } from '../features/update-habit/domain/update-habit'
 
-import { Habit } from '../../../core/models/habit'
+import { Habit } from '../domain/habit'
 
 @Injectable({
   providedIn: 'root',
