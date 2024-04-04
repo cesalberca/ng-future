@@ -1,10 +1,14 @@
 import { Config } from 'jest'
 
-console.warn('hiiiii')
-
 const config: Config = {
-  testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['./setup.ts'],
+  preset: 'jest-preset-angular',
+  setupFilesAfterEnv: ['<rootDir>/setup.ts'],
+  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/dist/'],
+
+  transform: {
+    '^.+\\.ts?$': 'jest-preset-angular',
+    '^.+\\.tsx?$': 'jest-preset-angular',
+  },
 }
 
 export default config
