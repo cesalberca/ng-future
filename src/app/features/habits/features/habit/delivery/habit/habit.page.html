@@ -1,6 +1,0 @@
-@if (habit()) {
-<app-habit data-test-id="habits" [habit]="habit()!">
-  <app-habit-updater [habitId]="habit()!.id" habit-actions />
-  <app-delete-habit [habit]="habit()!" habit-actions (deleted)="onDelete()" />
-</app-habit>
-}

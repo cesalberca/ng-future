@@ -1,8 +1,0 @@
-:host {
-  display: block;
-}
-
-.habit-actions {
-  display: flex;
-  gap: 8px;
-}
