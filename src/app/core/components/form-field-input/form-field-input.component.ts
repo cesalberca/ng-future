@@ -14,6 +14,6 @@ export class FormFieldInputComponent {
   required = input<boolean | string>(false)
   type = input<'text' | 'email' | 'password'>('text')
   control = input(new FormControl())
-  autocomplete = input<string>()
+  autocomplete = input<string>('off')
   error = input<string | undefined>()
 }
