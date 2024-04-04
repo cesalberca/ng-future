@@ -1,0 +1,9 @@
+@if(habits().length === 0) {
+<li>There are no habits.</li>
+} @else {
+<div class="habits">
+  @for (habit of habits(); track habit.id) {
+  <app-habit [habit]="habit"></app-habit>
+  }
+</div>
+}
