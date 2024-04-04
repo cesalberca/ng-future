@@ -1,5 +1,5 @@
 import { DateTime } from '../../../core/datetime/datetime'
-import { HabitMother } from '../../../../testing/mothers/habit.mother'
+import { HabitMother } from '../../../../tests/mothers/habit.mother'
 import { HabitTasksDto } from './habit-tasks.dto'
 import { IsoDate } from '../../../core/datetime/iso-date'
 

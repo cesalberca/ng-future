@@ -6,7 +6,7 @@ import { Id } from '../../../core/models/id'
 import { UpdateHabit } from '../features/update-habit/domain/update-habit'
 
 import { HabitTask } from '../features/habit-tasks/domain/habit-task'
-import { HabitMother } from '../../../../testing/mothers/habit.mother'
+import { HabitMother } from '../../../../tests/mothers/habit.mother'
 
 @Injectable({
   providedIn: 'root',

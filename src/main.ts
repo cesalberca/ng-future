@@ -8,7 +8,7 @@ async function enableMocking() {
     return
   }
 
-  const { browser } = await import('./testing/http-mocks/browser.mocks')
+  const { browser } = await import('./tests/http-mocks/browser.mocks')
   return browser.start()
 }
 

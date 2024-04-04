@@ -1,5 +1,5 @@
 import { DeleteHabitCmd } from './delete-habit.cmd'
-import { IdMother } from '../../../../../../testing/mothers/id.mother'
+import { IdMother } from '../../../../../../tests/mothers/id.mother'
 import { instance, mock, verify } from '@typestrong/ts-mockito'
 import { HabitsRepository } from '../../../domain/habits.repository'
 import { HabitsInMemoryRepository } from '../../../infrastructure/habits-in-memory.repository'
