@@ -14,13 +14,14 @@ import { ToastMiddleware } from './core/use-case/middlewares/toast.middleware'
 import { GlobalErrorHandler } from './core/errors/global-error-handler'
 import { HabitTasksHttpRepository } from './features/habits/infrastructure/habit-tasks-http.repository'
 import { AuthHttpRepository } from './features/auth/infrastructure/auth-http.repository'
+import { credentialsInterceptor } from './core/http/interceptors/credentials.interceptor'
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withComponentInputBinding()),
     { provide: TitleStrategy, useClass: CustomTitleStrategy },
     provideClientHydration(),
-    provideHttpClient(withFetch(), withInterceptors([baseUrlInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([baseUrlInterceptor, credentialsInterceptor])),
     GlobalErrorHandler,
     {
       provide: InjectionTokens.STORAGE,
