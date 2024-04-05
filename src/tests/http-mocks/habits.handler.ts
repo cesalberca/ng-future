@@ -64,6 +64,12 @@ export const habitsHandler = [
       const data = params.id
 
       habits.update(x => x.filter(y => y.id !== data))
+      habitTasks.update(habitTasks =>
+        habitTasks.map(habitTask => ({
+          date: habitTask.date,
+          tasks: habitTask.tasks.filter(task => task.habit.id !== data),
+        })),
+      )
       return new HttpResponse(undefined, {
         status: 204,
       })
