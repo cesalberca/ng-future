@@ -7,6 +7,7 @@ import { DateTime } from '../../app/core/datetime/datetime'
 import { IsoDate } from '../../app/core/datetime/iso-date'
 import { Habit } from '../../app/features/habits/domain/habit'
 import { UpdateHabitTasks } from '../../app/features/habits/features/update-habit/domain/update-habit-tasks'
+import { withAuth } from './middlewares/withAuth'
 
 export const habitTasks = new LiveStorage<HabitTasksDto[]>('habitTasks', HabitTasksDtoMother.habitTasksDto())
 
@@ -27,35 +28,41 @@ const generateHabitsForInterval = (habits: Habit[], from: DateTime | null, to: D
 }
 
 export const habitTasksHandler = [
-  http.get<never, never, HabitTasksDto[]>(api('habit-tasks'), () => {
-    const habits = habitTasks.getValue()[0].tasks.map(task => task.habit) || []
-    const today = DateTime.fromNow()
-    const lastDate: DateTime | null = DateTime.fromDate(new Date(habitTasks.getValue()[0].date))
+  http.get<never, never, HabitTasksDto[]>(
+    api('habit-tasks'),
+    withAuth(() => {
+      const habits = habitTasks.getValue()[0].tasks.map(task => task.habit) || []
+      const today = DateTime.fromNow()
+      const lastDate: DateTime | null = DateTime.fromDate(new Date(habitTasks.getValue()[0].date))
 
-    const newDates: HabitTasksDto[] = generateHabitsForInterval(habits, lastDate, today)
-    const res = [...newDates, ...habitTasks.getValue()].sort((a, b) =>
-      DateTime.compareDates(DateTime.fromISO(a.date), DateTime.fromISO(b.date)),
-    )
-    habitTasks.update(() => res)
-    return HttpResponse.json(res, {
-      status: 200,
-    })
-  }),
-  http.put<never, UpdateHabitTasks, HabitTasksDto[]>(api('habit-tasks/:id'), async ({ request }) => {
-    const data = await request.json()
-    const res: HabitTasksDto[] = habitTasks.getValue().map(habitTasks =>
-      JSON.stringify(habitTasks.date) !== JSON.stringify(data.date)
-        ? habitTasks
-        : {
-            ...habitTasks,
-            tasks: habitTasks.tasks.map(task =>
-              task.habit.id !== data.updatedTask.habit.id ? task : { ...task, ...data.updatedTask },
-            ),
-          },
-    )
-    habitTasks.update(() => res)
-    return HttpResponse.json(res, {
-      status: 200,
-    })
-  }),
+      const newDates: HabitTasksDto[] = generateHabitsForInterval(habits, lastDate, today)
+      const res = [...newDates, ...habitTasks.getValue()].sort((a, b) =>
+        DateTime.compareDates(DateTime.fromISO(a.date), DateTime.fromISO(b.date)),
+      )
+      habitTasks.update(() => res)
+      return HttpResponse.json(res, {
+        status: 200,
+      })
+    }),
+  ),
+  http.put<never, UpdateHabitTasks, HabitTasksDto[]>(
+    api('habit-tasks/:id'),
+    withAuth(async ({ request }) => {
+      const data = await request.json()
+      const res: HabitTasksDto[] = habitTasks.getValue().map(habitTasks =>
+        JSON.stringify(habitTasks.date) !== JSON.stringify(data.date)
+          ? habitTasks
+          : {
+              ...habitTasks,
+              tasks: habitTasks.tasks.map(task =>
+                task.habit.id !== data.updatedTask.habit.id ? task : { ...task, ...data.updatedTask },
+              ),
+            },
+      )
+      habitTasks.update(() => res)
+      return HttpResponse.json(res, {
+        status: 200,
+      })
+    }),
+  ),
 ]
