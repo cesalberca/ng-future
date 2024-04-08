@@ -13,12 +13,12 @@ export const routes: Routes = [
         component: HabitsPage,
       },
       {
-        path: ':id',
-        component: HabitPage,
-      },
-      {
         path: 'create',
         component: CreateHabitPage,
+      },
+      {
+        path: ':id',
+        component: HabitPage,
       },
     ],
   },
