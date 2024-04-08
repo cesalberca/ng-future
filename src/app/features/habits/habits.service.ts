@@ -1,22 +1,19 @@
-import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
-import { firstValueFrom } from 'rxjs'
-import { Habit } from './habit'
+import { Inject, Injectable } from '@angular/core'
 import { Id } from '../../core/models/id'
+import { HabitsRepository } from './habits.repository'
+import { InjectionTokens } from '../../core/tokens/injection-tokens'
 
 @Injectable({
   providedIn: 'root',
 })
 export class HabitsService {
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor(@Inject(InjectionTokens.HABITS_REPOSITORY) private readonly habitsRepository: HabitsRepository) {}
 
   async findAll() {
-    const habits = await firstValueFrom(this.httpClient.get<Habit[]>('habits'))
-    return habits
+    return this.habitsRepository.findAll()
   }
 
   async findOne(id: Id) {
-    const habit = await firstValueFrom(this.httpClient.get<Habit>(`habits/${id}`))
-    return habit
+    return this.habitsRepository.findOne(id)
   }
 }
