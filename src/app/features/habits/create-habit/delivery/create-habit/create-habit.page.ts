@@ -1,18 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
-import { HabitsService } from '../../../../application/habits.service'
-import { FormModel } from '../../../../../../core/models/form-model'
-import { CreateHabitFormModel as CreateHabitForm } from '../../../../../../core/models/create-habit-habit-form-model'
 import { Router } from '@angular/router'
-import { ButtonComponent } from '../../../../../../core/components/button/button.component'
-import { FormFieldInputComponent } from '../../../../../../core/components/form-field-input/form-field-input.component'
+import { FormModel } from '../../../../../core/models/form-model'
+import { HabitsService } from '../../../habits.service'
 
-type Model = FormModel<CreateHabitForm>
+export interface CreateHabitFormModel {
+  name: string
+}
+
+type Model = FormModel<CreateHabitFormModel>
 
 @Component({
   selector: 'app-create-habit-page',
   standalone: true,
-  imports: [ReactiveFormsModule, ButtonComponent, FormFieldInputComponent],
+  imports: [ReactiveFormsModule],
   templateUrl: './create-habit.page.html',
   styleUrl: './create-habit.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,7 +41,7 @@ export class CreateHabitPage {
   }
 
   async onSubmit() {
-    await this.habitsService.createHabit({
+    await this.habitsService.create({
       name: this.name.value,
     })
     this.router.navigate(['..'])
