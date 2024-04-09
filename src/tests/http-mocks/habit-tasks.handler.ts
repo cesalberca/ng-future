@@ -1,17 +1,15 @@
 import { http, HttpResponse } from 'msw'
 import { api } from './api'
 import { LiveStorage } from '@mswjs/storage'
-import { HabitTasksDtoMother } from '../../app/features/habits/infrastructure/habit-tasks-dto.mother'
 import { HabitTasksDto } from '../../app/features/habits/infrastructure/habit-tasks.dto'
 import { DateTime } from '../../app/core/datetime/datetime'
 import { IsoDate } from '../../app/core/datetime/iso-date'
 import { Habit } from '../../app/features/habits/domain/habit'
 import { UpdateHabitTasks } from '../../app/features/habits/features/update-habit/domain/update-habit-tasks'
 import { withAuth } from './middlewares/withAuth'
+import { HabitMother } from '../mothers/habit.mother'
 
-export const habitTasks = new LiveStorage<HabitTasksDto[]>('habitTasks', HabitTasksDtoMother.habitTasksDto())
-
-const generateHabitsForInterval = (habits: Habit[], from: DateTime | null, to: DateTime) => {
+const generateHabitsTaskForInterval = (habits: Habit[], from: DateTime | null, to: DateTime) => {
   const newDates: HabitTasksDto[] = []
   while (from?.format('DD-LL-YY') !== to.format('DD-LL-YY')) {
     from = from?.plus({ day: 1 }) || null
@@ -27,20 +25,22 @@ const generateHabitsForInterval = (habits: Habit[], from: DateTime | null, to: D
   return newDates
 }
 
+function getInitialHabitTasks() {
+  const habits = HabitMother.habits()
+  const today = DateTime.fromNow()
+  const lastDate = DateTime.fromISO('2024-03-21')
+  const habitTasks = generateHabitsTaskForInterval(habits, lastDate, today)
+  return habitTasks
+}
+
+export const habitTasks = new LiveStorage<HabitTasksDto[]>('habitTasks', getInitialHabitTasks())
+
 export const habitTasksHandler = [
   http.get<never, never, HabitTasksDto[]>(
     api('habit-tasks'),
     withAuth(() => {
-      const habits = habitTasks.getValue()[0].tasks.map(task => task.habit) || []
-      const today = DateTime.fromNow()
-      const lastDate: DateTime | null = DateTime.fromDate(new Date(habitTasks.getValue()[0].date))
-
-      const newDates: HabitTasksDto[] = generateHabitsForInterval(habits, lastDate, today)
-      const res = [...newDates, ...habitTasks.getValue()].sort((a, b) =>
-        DateTime.compareDates(DateTime.fromISO(a.date), DateTime.fromISO(b.date)),
-      )
-      habitTasks.update(() => res)
-      return HttpResponse.json(res, {
+      const habitTasksValue = habitTasks.getValue()
+      return HttpResponse.json(habitTasksValue, {
         status: 200,
       })
     }),
@@ -49,12 +49,12 @@ export const habitTasksHandler = [
     api('habit-tasks/:id'),
     withAuth(async ({ request }) => {
       const data = await request.json()
-      const res: HabitTasksDto[] = habitTasks.getValue().map(habitTasks =>
-        JSON.stringify(habitTasks.date) !== JSON.stringify(data.date)
-          ? habitTasks
+      const res: HabitTasksDto[] = habitTasks.getValue().map(habitTask =>
+        JSON.stringify(habitTask.date) !== JSON.stringify(data.date)
+          ? habitTask
           : {
-              ...habitTasks,
-              tasks: habitTasks.tasks.map(task =>
+              ...habitTask,
+              tasks: habitTask.tasks.map(task =>
                 task.habit.id !== data.updatedTask.habit.id ? task : { ...task, ...data.updatedTask },
               ),
             },
