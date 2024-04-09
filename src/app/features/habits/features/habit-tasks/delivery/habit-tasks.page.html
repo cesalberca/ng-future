@@ -14,7 +14,7 @@
       <div class="cell">{{habitTask.date | habitTasksDate}}</div>
       @for (task of habitTask.tasks; track task.habit.id) {
       <div class="cell">
-        <input type="checkbox" [checked]="task.done" (change)="toggleHabitTasks(habitTask.date, task)" />
+        <app-checkbox [checked]="task.done" (onChange)="toggleHabitTasks(habitTask.date, task)" />
       </div>
       }
     </div>
