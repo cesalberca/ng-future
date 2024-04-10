@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core'
 import { Id } from '../../core/models/id'
 import { HabitsRepository } from './habits.repository'
 import { InjectionTokens } from '../../core/tokens/injection-tokens'
-import { CreateHabitFormModel } from './habit-create/delivery/create-habit/create-habit.page'
+import { HabitCreateFormModel } from './habit-create/delivery/habit-create/habit-create.page'
 import { UuidService } from '../../core/crypto/uuid.service'
 
 @Injectable({
@@ -22,7 +22,7 @@ export class HabitsService {
     return this.habitsRepository.findOne(id)
   }
 
-  async create(model: CreateHabitFormModel) {
+  async create(model: HabitCreateFormModel) {
     return this.habitsRepository.create({
       name: model.name,
       id: this.uuidService.generate(),

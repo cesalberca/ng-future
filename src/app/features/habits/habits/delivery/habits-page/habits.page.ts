@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, effect, signal } from '@angular/core'
-import { HabitComponent } from '../habit.component'
-import { Habit } from '../habit'
-import { HabitsService } from '../habits.service'
+import { HabitComponent } from '../../../habit.component'
+import { Habit } from '../../../habit'
+import { HabitsService } from '../../../habits.service'
 import { RouterLink } from '@angular/router'
 
 @Component({

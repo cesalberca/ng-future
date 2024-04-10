@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router'
-import { HabitsPage } from './features/habits/habits/habits.page'
+import { HabitsPage } from './features/habits/habits/delivery/habits-page/habits.page'
 import { HabitPage } from './features/habits/habit-detail/habit.page'
 import { NotFoundPage } from './core/components/not-found/not-found-page.component'
-import { CreateHabitPage } from './features/habits/habit-create/delivery/create-habit/create-habit.page'
+import { HabitCreatePage } from './features/habits/habit-create/delivery/habit-create/habit-create.page'
 
 export const routes: Routes = [
   {
@@ -14,7 +14,7 @@ export const routes: Routes = [
       },
       {
         path: 'create',
-        component: CreateHabitPage,
+        component: HabitCreatePage,
       },
       {
         path: ':id',

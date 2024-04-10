@@ -4,21 +4,21 @@ import { Router } from '@angular/router'
 import { FormModel } from '../../../../../core/models/form-model'
 import { HabitsService } from '../../../habits.service'
 
-export interface CreateHabitFormModel {
+export interface HabitCreateFormModel {
   name: string
 }
 
-type Model = FormModel<CreateHabitFormModel>
+type Model = FormModel<HabitCreateFormModel>
 
 @Component({
   selector: 'app-habit-create-page',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './create-habit.page.html',
-  styleUrl: './create-habit.page.css',
+  templateUrl: './habit-create.page.html',
+  styleUrl: './habit-create.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CreateHabitPage {
+export class HabitCreatePage {
   form = this.formBuilder.group<Model>({
     name: this.formBuilder.control('', [Validators.required, Validators.minLength(3)]),
   })
