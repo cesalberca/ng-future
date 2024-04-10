@@ -4,7 +4,7 @@ import { firstValueFrom } from 'rxjs'
 import { Habit } from './habit'
 import { Id } from '../../core/models/id'
 import { HabitsRepository } from './habits.repository'
-import { CreateHabit } from './create-habit/domain/create-habit'
+import { CreateHabit } from './habit-create/domain/create-habit'
 
 @Injectable({
   providedIn: 'root',

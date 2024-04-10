@@ -11,7 +11,7 @@ export interface CreateHabitFormModel {
 type Model = FormModel<CreateHabitFormModel>
 
 @Component({
-  selector: 'app-create-habit-page',
+  selector: 'app-habit-create-page',
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './create-habit.page.html',

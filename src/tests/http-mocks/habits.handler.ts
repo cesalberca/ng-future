@@ -3,7 +3,7 @@ import { api } from './api'
 import { Habit } from '../../app/features/habits/habit'
 import { Id } from '../../app/core/models/id'
 import { HabitMother } from '../mothers/habit.mother'
-import { CreateHabit } from '../../app/features/habits/create-habit/domain/create-habit'
+import { CreateHabit } from '../../app/features/habits/habit-create/domain/create-habit'
 import { LiveStorage } from '@mswjs/storage'
 
 export const habits = new LiveStorage<Habit[]>('habits', HabitMother.habits())

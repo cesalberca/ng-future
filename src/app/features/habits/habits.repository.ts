@@ -1,6 +1,6 @@
 import { Habit } from './habit'
 import { Id } from '../../core/models/id'
-import { CreateHabit } from './create-habit/domain/create-habit'
+import { CreateHabit } from './habit-create/domain/create-habit'
 
 export interface HabitsRepository {
   findAll(): Promise<Habit[]>
