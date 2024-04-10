@@ -4,5 +4,3 @@
 @import url('./app/core/styles/spacing.css');
 @import url('./app/core/styles/theme.css');
 @import url('./app/core/styles/globals.css');
-@import url('../node_modules/primeng/resources/themes/lara-light-blue/theme.css');
-@import url('../node_modules/primeng/resources/primeng.min.css');
