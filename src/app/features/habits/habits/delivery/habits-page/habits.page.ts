@@ -3,7 +3,7 @@ import { HabitComponent } from '../../../habit.component'
 import { Habit } from '../../../habit'
 import { RouterLink } from '@angular/router'
 import { UseCaseService } from '../../../../../core/use-case/use-case.service'
-import { GetHabitTasksQry } from '../../../habit-detail/application/get-habit-detail.qry'
+import { GetHabitsQry } from '../../application/get-habits.qry'
 
 @Component({
   selector: 'app-habit-tasks',
@@ -18,7 +18,7 @@ export class HabitsPage {
 
   constructor(private readonly useCaseService: UseCaseService) {
     effect(async () => {
-      const habits = await this.useCaseService.execute(GetHabitTasksQry)
+      const habits = await this.useCaseService.execute(GetHabitsQry)
       this.habits.set(habits)
     })
   }
