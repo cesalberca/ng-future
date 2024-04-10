@@ -33,13 +33,6 @@ export class HabitCreatePage {
     return this.form.get('name')!
   }
 
-  get nameErrorMessage() {
-    const hasEmailError = this.name?.invalid && (this.name?.dirty || this.name?.touched)
-    if (hasEmailError && this.name.errors?.['required']) return 'Required field'
-    if (hasEmailError && this.name.errors?.['minlength']) return 'Name must be at least 3 characters long'
-    return undefined
-  }
-
   async onSubmit() {
     await this.habitsService.create({
       name: this.name.value,
