@@ -1,0 +1,4 @@
+@import url('./app/core/styles/reset.css');
+@import url('./app/core/styles/spacing.css');
+@import url('./app/core/styles/theme.css');
+@import url('./app/core/styles/globals.css');
