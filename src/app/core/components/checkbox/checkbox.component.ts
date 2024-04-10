@@ -6,7 +6,7 @@ import { CheckboxModule } from 'primeng/checkbox'
   selector: 'app-checkbox',
   standalone: true,
   imports: [FormsModule, CheckboxModule],
-  template: ` <p-checkbox [(ngModel)]="checked" [binary]="true"></p-checkbox> `,
+  template: `<p-checkbox [(ngModel)]="checked" [binary]="true"></p-checkbox> `,
   styleUrl: './checkbox.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
