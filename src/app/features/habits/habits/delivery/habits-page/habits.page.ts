@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, effect, signal } from '@angular/core'
 import { HabitComponent } from '../../../habit.component'
 import { Habit } from '../../../habit'
-import { HabitsService } from '../../../habits.service'
 import { RouterLink } from '@angular/router'
+import { UseCaseService } from '../../../../../core/use-case/use-case.service'
+import { GetHabitTasksQry } from '../../../habit-detail/application/get-habits.qry'
 
 @Component({
   selector: 'app-habit-tasks',
@@ -15,9 +16,9 @@ import { RouterLink } from '@angular/router'
 export class HabitsPage {
   habits = signal<Habit[]>([])
 
-  constructor(private readonly habitsService: HabitsService) {
+  constructor(private readonly useCaseService: UseCaseService) {
     effect(async () => {
-      const habits = await this.habitsService.findAll()
+      const habits = await this.useCaseService.execute(GetHabitTasksQry)
       this.habits.set(habits)
     })
   }
