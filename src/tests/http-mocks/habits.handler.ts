@@ -29,4 +29,13 @@ export const habitsHandler = [
       status: 200,
     })
   }),
+  http.delete<{ id: Id }, never, never>(api('habits/:id'), async ({ params }) => {
+    const data = params.id
+
+    habits.update(x => x.filter(y => y.id !== data))
+
+    return new HttpResponse(undefined, {
+      status: 204,
+    })
+  }),
 ]

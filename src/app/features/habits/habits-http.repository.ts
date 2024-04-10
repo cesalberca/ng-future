@@ -16,13 +16,15 @@ export class HabitsHttpRepository implements HabitsRepository {
     return firstValueFrom(this.httpClient.post<void>('habits', model))
   }
 
-  async findAll() {
-    const habits = await firstValueFrom(this.httpClient.get<Habit[]>('habits'))
-    return habits
+  findAll() {
+    return firstValueFrom(this.httpClient.get<Habit[]>('habits'))
   }
 
-  async findOne(id: Id) {
-    const habit = await firstValueFrom(this.httpClient.get<Habit>(`habits/${id}`))
-    return habit
+  findOne(id: Id) {
+    return firstValueFrom(this.httpClient.get<Habit>(`habits/${id}`))
+  }
+
+  delete(id: Id): Promise<void> {
+    return firstValueFrom(this.httpClient.delete<void>(`habits/${id}`))
   }
 }

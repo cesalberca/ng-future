@@ -6,4 +6,5 @@ export interface HabitsRepository {
   findAll(): Promise<Habit[]>
   findOne(id: Id): Promise<Habit>
   create(model: HabitCreate): Promise<void>
+  delete(id: Id): Promise<void>
 }

@@ -1,0 +1,65 @@
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 90deg;
+}
+
+:host {
+  --angle: 90deg;
+  --ng-primary-gradient-color: linear-gradient(
+    var(--angle),
+    var(--orange-red) 0%,
+    var(--vivid-pink) 50%,
+    var(--electric-violet) 100%
+  );
+
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition:
+    opacity 0.3s ease,
+    background 0.3s ease;
+}
+:host.primary {
+  --primary-button-background: linear-gradient(#fff 0 0) padding-box, var(--ng-primary-gradient-color) border-box;
+  background: var(--primary-button-background);
+  color: var(--gray-900);
+}
+:host.warn {
+  --warn-button-background: linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(var(--angle), var(--hot-red) 0%, var(--hot-red) 50%, var(--hot-red) 100%) border-box;
+  background: var(--warn-button-background);
+  color: var(--hot-red);
+}
+
+:host:hover {
+  animation: spin-gradient 4s linear infinite forwards;
+  opacity: 0.8;
+}
+:host.primary:hover {
+  --primary-button-hover-background: var(--soft-pink-radial-gradient) padding-box,
+    var(--ng-primary-gradient-color) border-box;
+  background: var(--primary-button-hover-background);
+}
+:host.warn:hover {
+  --warn-button-hover-background: var(--soft-red-radial-gradient) padding-box,
+    linear-gradient(var(--angle), var(--hot-red) 0%, var(--hot-red) 50%, var(--hot-red) 100%) border-box;
+  background: var(--warn-button-hover-background);
+}
+
+:host:active {
+  opacity: 1;
+}
+
+@keyframes spin-gradient {
+  0% {
+    --angle: 90deg;
+  }
+  100% {
+    --angle: 450deg;
+  }
+}
