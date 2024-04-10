@@ -1,6 +1,4 @@
-@if(habits().length === 0) {
-<li>There are no habits.</li>
-} @else {
+@defer (on immediate) {
 <div class="habits">
   @for (habit of habits(); track habit.id) {
   <a [routerLink]="'/habits/' + habit.id">
@@ -8,5 +6,12 @@
   </a>
   }
 </div>
+} @placeholder {
+<p class="placeholder"></p>
+} @loading (minimum 100ms) {
+<p>Loading...</p>
+} @error {
+<p>Failed</p>
 }
+
 <a [routerLink]="'create'">Create Habit</a>
