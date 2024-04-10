@@ -2,11 +2,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { FormModel } from '../../../../../core/models/form-model'
-import { HabitsService } from '../../../habits.service'
-
-export interface HabitCreateFormModel {
-  name: string
-}
+import { HabitCreateFormModel } from '../../domain/habit-create-form-model'
+import { UseCaseService } from '../../../../../core/use-case/use-case.service'
+import { HabitCreateCmd } from '../../application/habit-create.cmd'
 
 type Model = FormModel<HabitCreateFormModel>
 
@@ -25,7 +23,7 @@ export class HabitCreatePage {
 
   constructor(
     private readonly formBuilder: NonNullableFormBuilder,
-    private readonly habitsService: HabitsService,
+    private readonly useCaseService: UseCaseService,
     private readonly router: Router,
   ) {}
 
@@ -34,9 +32,7 @@ export class HabitCreatePage {
   }
 
   async onSubmit() {
-    await this.habitsService.create({
-      name: this.name.value,
-    })
+    await this.useCaseService.execute(HabitCreateCmd, { name: this.name.value })
     this.router.navigate(['..'])
   }
 }

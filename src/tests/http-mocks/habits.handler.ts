@@ -3,7 +3,7 @@ import { api } from './api'
 import { Habit } from '../../app/features/habits/habit'
 import { Id } from '../../app/core/models/id'
 import { HabitMother } from '../mothers/habit.mother'
-import { CreateHabit } from '../../app/features/habits/habit-create/domain/create-habit'
+import { HabitCreate } from '../../app/features/habits/habit-create/domain/habit-create'
 import { LiveStorage } from '@mswjs/storage'
 
 export const habits = new LiveStorage<Habit[]>('habits', HabitMother.habits())
@@ -22,7 +22,7 @@ export const habitsHandler = [
       status: 200,
     }),
   ),
-  http.post<CreateHabit, never, Habit>(api('habits'), async ({ request }) => {
+  http.post<HabitCreate, never, Habit>(api('habits'), async ({ request }) => {
     const data = await request.json()
     habits.update(x => [...x, data])
     return HttpResponse.json(data, {

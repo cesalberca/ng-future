@@ -4,7 +4,7 @@ import { firstValueFrom } from 'rxjs'
 import { Habit } from './habit'
 import { Id } from '../../core/models/id'
 import { HabitsRepository } from './habits.repository'
-import { CreateHabit } from './habit-create/domain/create-habit'
+import { HabitCreate } from './habit-create/domain/habit-create'
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ import { CreateHabit } from './habit-create/domain/create-habit'
 export class HabitsHttpRepository implements HabitsRepository {
   constructor(private readonly httpClient: HttpClient) {}
 
-  create(model: CreateHabit): Promise<void> {
+  create(model: HabitCreate): Promise<void> {
     return firstValueFrom(this.httpClient.post<void>('habits', model))
   }
 

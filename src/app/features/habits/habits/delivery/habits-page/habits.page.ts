@@ -3,7 +3,7 @@ import { HabitComponent } from '../../../habit.component'
 import { Habit } from '../../../habit'
 import { RouterLink } from '@angular/router'
 import { UseCaseService } from '../../../../../core/use-case/use-case.service'
-import { GetHabitTasksQry } from '../../../habit-detail/application/get-habits.qry'
+import { GetHabitTasksQry } from '../../../habit-detail/application/get-habit-detail.qry'
 
 @Component({
   selector: 'app-habit-tasks',
