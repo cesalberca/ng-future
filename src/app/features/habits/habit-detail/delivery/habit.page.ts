@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core'
-import { HabitComponent } from '../habit.component'
-import { Id } from '../../../core/models/id'
-import { Habit } from '../habit'
-import { HabitsService } from '../habits.service'
+import { HabitComponent } from '../../habit.component'
+import { Id } from '../../../../core/models/id'
+import { Habit } from '../../habit'
+import { UseCaseService } from '../../../../core/use-case/use-case.service'
+import { GetHabitDetailQry } from '../application/get-habit-detail.qry'
 
 @Component({
   selector: 'app-habit-page',
@@ -16,9 +17,9 @@ export class HabitPage {
   id = input.required<Id>()
   habit = signal<Habit | undefined>(undefined)
 
-  constructor(private readonly habitsService: HabitsService) {
+  constructor(private readonly useCaseService: UseCaseService) {
     effect(async () => {
-      const habit = await this.habitsService.findOne(this.id())
+      const habit = await this.useCaseService.execute(GetHabitDetailQry, this.id())
       this.habit.set(habit)
     })
   }
