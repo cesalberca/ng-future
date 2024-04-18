@@ -1,4 +1,10 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" data-testid="create-habit-form">
+<form
+  aria-label="create habit form"
+  role="form"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  data-testid="create-habit-form"
+>
   <app-form-field-input
     label="Name"
     type="text"
