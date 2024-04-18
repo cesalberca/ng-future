@@ -6,13 +6,14 @@ import { LoginCmd } from '../../application/login.cmd'
 import { Router } from '@angular/router'
 import { UseCaseService } from '../../../../core/use-case/use-case.service'
 import { FormFieldInputComponent } from '../../../../core/components/form-field-input/form-field-input.component'
+import { InputComponent } from '../../../../core/components/input/input.component'
 
 type LoginFormModel = FormModel<{ email: string; password: string }>
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, ButtonComponent, FormFieldInputComponent],
+  imports: [ReactiveFormsModule, ButtonComponent, FormFieldInputComponent, InputComponent],
   templateUrl: './login.page.html',
   styleUrl: './login.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -3,14 +3,13 @@
     <h1>Login</h1>
   </header>
   <form aria-label="login form" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <app-form-field-input
+    <app-input
       label="Email"
       type="email"
-      required
+      formControlName="email"
       autocomplete="username"
-      [control]="form.controls.email"
       [error]="emailErrorMessage"
-    ></app-form-field-input>
+    ></app-input>
     <app-form-field-input
       label="Password"
       type="password"
