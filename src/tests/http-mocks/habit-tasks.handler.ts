@@ -9,18 +9,15 @@ import { UpdateHabitTasks } from '../../app/features/habits/features/update-habi
 import { withAuth } from './middlewares/withAuth'
 import { HabitMother } from '../mothers/habit.mother'
 
-const generateHabitsTaskForInterval = (habits: Habit[], from: DateTime | null, to: DateTime) => {
+const generateHabitsTaskForInterval = (habits: Habit[], from: DateTime, to: DateTime) => {
   const newDates: HabitTasksDto[] = []
-  while (from?.format('DD-LL-YY') !== to.format('DD-LL-YY')) {
-    from = from?.plus({ day: 1 }) || null
-    if (!from) {
-      return []
-    }
+  while (from.format('DD-LL-YY') !== to.format('DD-LL-YY')) {
     const habitTask: HabitTasksDto = {
       date: from.toISO() as IsoDate,
       tasks: habits.map(habit => ({ habit, done: false })),
     }
     newDates.push(habitTask)
+    from = from.plus({ day: -1 })!
   }
   return newDates
 }
@@ -28,8 +25,8 @@ const generateHabitsTaskForInterval = (habits: Habit[], from: DateTime | null, t
 function getInitialHabitTasks() {
   const habits = HabitMother.habits()
   const today = DateTime.fromNow()
-  const lastDate = DateTime.fromISO('2024-03-21')
-  const habitTasks = generateHabitsTaskForInterval(habits, lastDate, today)
+  const initialDay = DateTime.fromISO('2024-03-21')
+  const habitTasks = generateHabitsTaskForInterval(habits, today, initialDay)
   return habitTasks
 }
 
