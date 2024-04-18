@@ -8,7 +8,10 @@ test.describe('delete habit', () => {
     const habit = HabitMother.habits()[0]
     await page.getByRole('link', { name: habit.name }).click()
     await expect(page.getByTestId('delete-habit-button')).toBeVisible()
+
     await page.getByTestId('delete-habit-button').click()
-    expect(page.locator).not.toContain(habit.name)
+    const response = await page.waitForResponse('http://localhost:4000/api/habit-tasks')
+    await response.json()
+    expect(page.locator('body')).not.toContainText(habit.name)
   })
 })
