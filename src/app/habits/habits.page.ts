@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, effect, signal } from '@angular/core'
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core'
 import { HabitComponent } from './habit.component'
 import { Habit } from './habit'
 import { HabitsService } from './habits.service'
@@ -15,9 +15,8 @@ export class HabitsPage {
   habits = signal<Habit[]>([])
 
   constructor(private readonly habitsService: HabitsService) {
-    effect(async () => {
-      const habits = await this.habitsService.findAll()
-      this.habits.set(habits)
+    this.habitsService.findAll().then(x => {
+      this.habits.set(x)
     })
   }
 }
