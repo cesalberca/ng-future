@@ -56,6 +56,6 @@ export class LoginPage {
     const email = this.form.get('email')?.value ?? ''
     const password = this.form.get('password')?.value ?? ''
     await this.useCaseService.execute(LoginCmd, { email, password })
-    await this.router.navigateByUrl('/habits')
+    await this.router.navigate(['habits'])
   }
 }
